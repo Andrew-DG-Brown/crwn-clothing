@@ -1,4 +1,3 @@
-import React from "react";
 import CategoryItems from "../category-item/category-item.component";
 import "./category-list.component.scss";
 

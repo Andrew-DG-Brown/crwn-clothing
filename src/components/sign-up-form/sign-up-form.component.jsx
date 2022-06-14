@@ -5,6 +5,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+
 import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
@@ -37,13 +38,15 @@ const SignUpForm = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+
       resetFormFields();
+
       alert("Account created");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Connet create user, email already in use");
       }
-      console.log("User creation error," + error);
+      alert("User creation error, " + error);
     }
   };
 

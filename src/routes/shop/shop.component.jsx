@@ -4,7 +4,7 @@ import ProductCard from "../../components/product-card/product-card.component";
 
 import "./shop.styles.scss";
 
-export const Shop = () => {
+const Shop = () => {
   const { currentProducts } = useContext(ProductsContext);
   console.log(currentProducts);
 
@@ -16,3 +16,5 @@ export const Shop = () => {
     </div>
   );
 };
+
+export default Shop;

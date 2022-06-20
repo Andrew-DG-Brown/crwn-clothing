@@ -18,11 +18,13 @@ const CheckoutItem = ({ cartItem }) => {
       <h2>{name}</h2>
       <div className="quantity-container">
         <button onClick={minusOneHandler}>{`<`}</button>
-        <span>{quantity}</span>
+        <h2>{quantity}</h2>
         <button onClick={quantityIncrement}>{`>`}</button>
       </div>
       <h2 className="price">${price}</h2>
-      <button onClick={removeItemHandler}>X</button>
+      <button className="delete-button" onClick={removeItemHandler}>
+        X
+      </button>
     </div>
   );
 };

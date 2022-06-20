@@ -27,9 +27,7 @@ const decreaseCartQuantity = (cartItems, productToDecrement) => {
     return cartItems.map((item) => {
       if (item.quantity === 1) {
         return { ...item, quantity: 1 };
-      }
-
-      if (item.id === productToDecrement.id) {
+      } else if (item.id === productToDecrement.id) {
         return { ...item, quantity: item.quantity - 1 };
       }
 

@@ -1,7 +1,15 @@
 import "./cart-item.styles.scss";
 
+import { useContext } from "react";
+import { CartContext } from "../../contexts/cart.context";
+
 const CartItem = ({ cartItem }) => {
+  const { addItemToCart, decrementCartQuantity } = useContext(CartContext);
+
   const { name, quantity, imageUrl, price } = cartItem;
+
+  const plusOneQuantity = () => addItemToCart(cartItem);
+  const minusOneQuantity = () => decrementCartQuantity(cartItem);
 
   return (
     <div className="cart-item-container">
@@ -11,6 +19,10 @@ const CartItem = ({ cartItem }) => {
         <span className="price">
           {quantity} x ${price}
         </span>
+      </div>
+      <div className="quantity-buttons-container">
+        <button onClick={minusOneQuantity}>{`-`}</button>
+        <button onClick={plusOneQuantity}>{`+`}</button>
       </div>
     </div>
   );

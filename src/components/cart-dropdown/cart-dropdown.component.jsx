@@ -15,9 +15,13 @@ const CartDropdown = () => {
     setIsCartOpen(!isCartOpen);
   };
 
+  const cartIsEmpty = !cartItems[0];
+
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">
+        {cartIsEmpty && <span className="empty-cart">Your cart is empty</span>}
+
         {cartItems.map((cartItem) => {
           return <CartItem key={cartItem.id} cartItem={cartItem} />;
         })}

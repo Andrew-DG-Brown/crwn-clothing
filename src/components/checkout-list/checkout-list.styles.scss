@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .empty-cart {
+    width: 100%;
+    margin: auto 0;
+    text-align: center;
+    font-size: large;
+  }
 }
 
 .cart-total-price-container {

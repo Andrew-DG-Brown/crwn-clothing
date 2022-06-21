@@ -8,8 +8,12 @@ import "./checkout-list.styles.scss";
 const CheckoutList = () => {
   const { cartItems, cartTotalPrice } = useContext(CartContext);
 
+  const cartIsEmpty = !cartItems[0];
+
   return (
     <div className="checkout-list-container">
+      {cartIsEmpty && <span className="empty-cart">Your cart is empty</span>}
+
       {cartItems.map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}

@@ -30,7 +30,6 @@ const decreaseCartQuantity = (cartItems, productToDecrement) => {
       } else if (item.id === productToDecrement.id) {
         return { ...item, quantity: item.quantity - 1 };
       }
-
       return item;
     });
   }
@@ -76,18 +75,21 @@ export const CartProvider = ({ children }) => {
     setCartItems(popCartItem(cartItems, productToRemove));
   };
 
-  //depending on cartItems array changing, will reduce the total quantity of items && total their prices
+  //depending on cartItems array changing, will reduce the total quantity of items & total their prices
   useEffect(() => {
     const newCartCount = cartItems.reduce(
       (accum, cartItem) => accum + cartItem.quantity,
       0
     );
 
+    setCartTotalQuantity(newCartCount);
+  }, [cartItems]);
+
+  useEffect(() => {
     const newCartTotal = cartItems.reduce((accum, cartItem) => {
       return accum + cartItem.price * cartItem.quantity;
     }, 0);
 
-    setCartTotalQuantity(newCartCount);
     setCartTotalPrice(newCartTotal);
   }, [cartItems]);
 

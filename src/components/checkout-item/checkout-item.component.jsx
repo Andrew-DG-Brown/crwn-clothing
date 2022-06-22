@@ -9,7 +9,12 @@ const CheckoutItem = ({ cartItem }) => {
   const { name, quantity, imageUrl, price } = cartItem;
 
   const quantityIncrement = () => addItemToCart(cartItem);
-  const minusOneHandler = () => decrementCartQuantity(cartItem);
+
+  const minusOneHandler = () => {
+    cartItem.quantity === 1
+      ? removeCartItem(cartItem)
+      : decrementCartQuantity(cartItem);
+  };
   const removeItemHandler = () => removeCartItem(cartItem);
 
   return (
@@ -17,13 +22,13 @@ const CheckoutItem = ({ cartItem }) => {
       <img className="product-image" src={`${imageUrl}`} alt={name} />
       <h2>{name}</h2>
       <div className="quantity-container">
-        <button onClick={minusOneHandler}>{`<`}</button>
+        <button onClick={minusOneHandler}>&#10094;</button>
         <h2>{quantity}</h2>
-        <button onClick={quantityIncrement}>{`>`}</button>
+        <button onClick={quantityIncrement}>&#10095;</button>
       </div>
       <h2 className="price">${price}</h2>
       <button className="delete-button" onClick={removeItemHandler}>
-        X
+        &#10005;
       </button>
     </div>
   );

@@ -15,6 +15,8 @@ import {
   setDoc,
   collection,
   writeBatch,
+  query,
+  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -43,6 +45,7 @@ export const signInWithGooglePopup = () =>
 //accessing the firestore database
 export const db = getFirestore();
 
+//function to add the shop data to firestore
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -58,6 +61,21 @@ export const addCollectionAndDocuments = async (
 
   await batch.commit();
   console.log("done");
+};
+
+export const getCatagoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "catagories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const catagoryMap = querySnapshot.docs.reduce((accum, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+
+    accum[title.toLowerCase()] = items;
+    return accum;
+  }, {});
+
+  return catagoryMap;
 };
 
 //Passing in the user after sign in

@@ -1,4 +1,4 @@
-import CategoryItems from "../category-item/category-item.component";
+import CategoryItems from "../directory-item/directory-item.component";
 import "./category-list.component.scss";
 
 function CategoryList() {

@@ -1,5 +1,7 @@
 import ProductCard from "../product-card/product-card.component";
 
+import { Link } from "react-router-dom";
+
 import "./category-preview.styles.scss";
 
 const CatagoryPreview = ({ title, products }) => {
@@ -11,9 +13,13 @@ const CatagoryPreview = ({ title, products }) => {
     <div className="category-preview-container">
       <div className="header">
         <h2>
-          <span className="title">{capitalizeFirstLetter(title)}</span>
+          <Link to={title} className="title">
+            {capitalizeFirstLetter(title)}
+          </Link>
         </h2>
-        <span className="see-all">See All</span>
+        <Link to={title} className="see-all">
+          See All
+        </Link>
       </div>
 
       <div className="preview">

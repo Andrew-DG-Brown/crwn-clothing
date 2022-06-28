@@ -17,11 +17,19 @@
       font-weight: 200;
       font-size: 20px;
       cursor: pointer;
+
+      &:hover {
+        opacity: 50%;
+      }
     }
   
     .title {
       font-size: 34px;
       cursor: pointer;
+
+      &:hover {
+        opacity: 50%;
+      }
     }
   }
 

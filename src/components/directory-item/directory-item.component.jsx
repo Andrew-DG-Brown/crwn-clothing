@@ -1,7 +1,7 @@
 import React from "react";
-import "./category-item.component.scss";
+import "./directory-item.component.scss";
 
-const CategoryItems = () => {
+const DirectoryItem = () => {
   const categories = [
     {
       id: 1,
@@ -32,14 +32,14 @@ const CategoryItems = () => {
 
   return categories.map(({ id, title, imageUrl }) => {
     return (
-      <div className="category-container" key={id}>
+      <div className="directory-container" key={id}>
         <div
           className="background-image"
           style={{
             backgroundImage: `url(${imageUrl})`,
           }}
         >
-          <div className="category-body-container">
+          <div className="directory-body-container">
             <h2>{title}</h2>
             <p>Shop Now</p>
           </div>
@@ -49,4 +49,4 @@ const CategoryItems = () => {
   });
 };
 
-export default CategoryItems;
+export default DirectoryItem;

@@ -16,28 +16,30 @@
       color: white;
     }
   }
+
+  .quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    text-align: center;
+  }
+  
+  img {
+    width: 100px;
+  }
+  
+  h2 {
+    width: 80px;
+  }
+  
+  
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 30px;
+  }
+  
 }
 
-.quantity-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  text-align: center;
-}
-
-img {
-  width: 100px;
-}
-
-h2 {
-  width: 80px;
-}
-
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-size: 30px;
-}

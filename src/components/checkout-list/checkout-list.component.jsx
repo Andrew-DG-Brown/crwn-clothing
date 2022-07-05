@@ -3,7 +3,12 @@ import CheckoutItem from "../checkout-item/checkout-item.component";
 import { CartContext } from "../../contexts/cart.context";
 import { useContext } from "react";
 
-import "./checkout-list.styles.scss";
+import {
+  CheckoutListContainer,
+  EmptyCart,
+  CartTotalPriceContainer,
+  CartTotalPrice,
+} from "./checkout-list.styles";
 
 const CheckoutList = () => {
   const { cartItems, cartTotalPrice } = useContext(CartContext);
@@ -11,17 +16,17 @@ const CheckoutList = () => {
   const cartIsEmpty = !cartItems[0];
 
   return (
-    <div className="checkout-list-container">
-      {cartIsEmpty && <span className="empty-cart">Your cart is empty</span>}
+    <CheckoutListContainer>
+      {cartIsEmpty && <EmptyCart>Your cart is empty</EmptyCart>}
 
       {cartItems.map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
-      <div className="cart-total-price-container">
+      <CartTotalPriceContainer>
         <span>Total:</span>
-        <span className="cart-total-price">${cartTotalPrice}</span>
-      </div>
-    </div>
+        <CartTotalPrice>${cartTotalPrice}</CartTotalPrice>
+      </CartTotalPriceContainer>
+    </CheckoutListContainer>
   );
 };
 

@@ -2,7 +2,13 @@ import ProductCard from "../product-card/product-card.component";
 
 import { Link } from "react-router-dom";
 
-import "./category-preview.styles.scss";
+import {
+  CategoryPreviewContainer,
+  Header,
+  SeeAll,
+  Title,
+  Preview,
+} from "./category-preview.styles";
 
 const CatagoryPreview = ({ title, products }) => {
   function capitalizeFirstLetter(string) {
@@ -10,26 +16,22 @@ const CatagoryPreview = ({ title, products }) => {
   }
 
   return (
-    <div className="category-preview-container">
-      <div className="header">
+    <CategoryPreviewContainer>
+      <Header>
         <h2>
-          <Link to={title} className="title">
-            {capitalizeFirstLetter(title)}
-          </Link>
+          <Title to={title}>{capitalizeFirstLetter(title)}</Title>
         </h2>
-        <Link to={title} className="see-all">
-          See All
-        </Link>
-      </div>
+        <SeeAll to={title}>See All</SeeAll>
+      </Header>
 
-      <div className="preview">
+      <Preview>
         {products
           .filter((_, idx) => idx < 4)
           .map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}
-      </div>
-    </div>
+      </Preview>
+    </CategoryPreviewContainer>
   );
 };
 

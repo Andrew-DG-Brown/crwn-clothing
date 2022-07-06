@@ -1,11 +1,11 @@
 import CategoryItems from "../directory-item/directory-item.component";
-import "./category-list.component.scss";
+import { CategoriesContainer } from "./category-list.styles";
 
 function CategoryList() {
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       <CategoryItems />
-    </div>
+    </CategoriesContainer>
   );
 }
 

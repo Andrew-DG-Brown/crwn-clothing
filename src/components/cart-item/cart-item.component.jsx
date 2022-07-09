@@ -1,4 +1,9 @@
-import "./cart-item.styles.scss";
+import {
+  CartItemContainer,
+  ItemDetails,
+  Name,
+  QuantityButtonsContainer,
+} from "./cart-item.styles";
 
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
@@ -17,19 +22,19 @@ const CartItem = ({ cartItem }) => {
   };
 
   return (
-    <div className="cart-item-container">
+    <CartItemContainer>
       <img src={`${imageUrl}`} alt={name} />
-      <div className="item-details">
-        <span className="name">{name}</span>
+      <ItemDetails>
+        <Name>{name}</Name>
         <span className="price">
           {quantity} x ${price}
         </span>
-      </div>
-      <div className="quantity-buttons-container">
+      </ItemDetails>
+      <QuantityButtonsContainer>
         <button onClick={minusOneQuantity}>{`-`}</button>
         <button onClick={plusOneQuantity}>{`+`}</button>
-      </div>
-    </div>
+      </QuantityButtonsContainer>
+    </CartItemContainer>
   );
 };
 

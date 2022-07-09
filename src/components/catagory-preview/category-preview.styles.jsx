@@ -31,6 +31,7 @@ export const SeeAll = styled(Link)`
 export const Title = styled(Link)`
   font-size: 34px;
   cursor: pointer;
+  text-transform: capitalize;
 
   &:hover {
     opacity: 50%;

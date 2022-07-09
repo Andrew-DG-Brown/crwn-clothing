@@ -1,5 +1,9 @@
 import React from "react";
-import "./directory-item.component.scss";
+import {
+  DirectoryItemContainer,
+  Body,
+  BackgroundImage,
+} from "./directory-item.styles";
 
 const DirectoryItem = () => {
   const categories = [
@@ -32,19 +36,14 @@ const DirectoryItem = () => {
 
   return categories.map(({ id, title, imageUrl }) => {
     return (
-      <div className="directory-container" key={id}>
-        <div
-          className="background-image"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-          }}
-        >
-          <div className="directory-body-container">
+      <DirectoryItemContainer key={id}>
+        <BackgroundImage imageUrl={imageUrl}>
+          <Body>
             <h2>{title}</h2>
             <p>Shop Now</p>
-          </div>
-        </div>
-      </div>
+          </Body>
+        </BackgroundImage>
+      </DirectoryItemContainer>
     );
   });
 };

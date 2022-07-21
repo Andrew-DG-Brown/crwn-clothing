@@ -16,7 +16,7 @@ const CartDropdown = () => {
   const { cartItems, isCartOpen, setIsCartOpen, cartTotalPrice } =
     useContext(CartContext);
 
-  const closeCart = () => {
+  const closeCart = (e) => {
     setIsCartOpen(!isCartOpen);
   };
 

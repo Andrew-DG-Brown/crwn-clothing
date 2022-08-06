@@ -65,13 +65,18 @@ const cartReducer = (state, action) => {
         ...state,
         ...payload,
       };
+    case "SET_CART_OPEN":
+      return {
+        ...state,
+        isCartOpen: payload,
+      };
     default:
       throw new Error(`Unhandled type ${type} in cartReducer`);
   }
 };
 
 const INITIAL_STATE = {
-  isCartOpen: true,
+  isCartOpen: false,
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalPrice: 0,
@@ -108,7 +113,15 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // helper functions
+  // const cartOpenToggleReducer = (openState) => {
+  //   const toggle = !openState;
+  //   dispatch({
+  //     type: "SET_CART_OPEN",
+  //     payload: { isCartOpen: toggle },
+  //   });
+  // };
+
+  // helper functions (exported to application)
 
   const addItemToCart = (productToAdd) => {
     const newCartItems = addCartItem(cartItems, productToAdd);
@@ -125,11 +138,18 @@ export const CartProvider = ({ children }) => {
     updateCartItemsReducer(newCartItems);
   };
 
+  const setIsCartOpen = (bool) => {
+    dispatch({
+      type: "SET_CART_OPEN",
+      payload: bool,
+    });
+  };
+
   // === Reducer END ===
 
   const value = {
     isCartOpen,
-    setIsCartOpen: () => {},
+    setIsCartOpen,
     addItemToCart,
     cartItems,
     cartTotalQuantity,

@@ -1,4 +1,6 @@
-import { useState, createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
+
+import { createAction } from "../utils/reducer/reducer.utils";
 
 //add item to cart w/ quantity updates
 const addCartItem = (cartItems, productToAdd) => {
@@ -103,23 +105,14 @@ export const CartProvider = ({ children }) => {
       return accum + cartItem.price * cartItem.quantity;
     }, 0);
 
-    dispatch({
-      type: "SET_CART_ITEMS",
-      payload: {
+    dispatch(
+      createAction("SET_CART_ITEMS", {
         cartItems: newCartItems,
         cartTotalPrice: newCartTotal,
         cartTotalQuantity: newCartCount,
-      },
-    });
+      })
+    );
   };
-
-  // const cartOpenToggleReducer = (openState) => {
-  //   const toggle = !openState;
-  //   dispatch({
-  //     type: "SET_CART_OPEN",
-  //     payload: { isCartOpen: toggle },
-  //   });
-  // };
 
   // helper functions (exported to application)
 
@@ -139,10 +132,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const setIsCartOpen = (bool) => {
-    dispatch({
-      type: "SET_CART_OPEN",
-      payload: bool,
-    });
+    dispatch(createAction("SET_CART_OPEN", bool));
   };
 
   // === Reducer END ===

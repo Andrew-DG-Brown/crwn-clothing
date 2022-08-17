@@ -1,10 +1,10 @@
-import CategoryItems from "../directory-item/directory-item.component";
+import DirectoryItems from "../directory-item/directory-item.component";
 import { CategoriesContainer } from "./category-list.styles";
 
 function CategoryList() {
   return (
     <CategoriesContainer>
-      <CategoryItems />
+      <DirectoryItems />
     </CategoriesContainer>
   );
 }

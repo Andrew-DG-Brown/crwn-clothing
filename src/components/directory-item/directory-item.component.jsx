@@ -44,7 +44,7 @@ const categories = [
     Refactor this to intake the categories data, watch Section 11, episode "last touches"
 */
 
-const DirectoryItem = () => {
+const DirectoryItems = () => {
   const navigate = useNavigate();
 
   return categories.map(({ id, title, imageUrl, route }) => {
@@ -64,4 +64,4 @@ const DirectoryItem = () => {
   });
 };
 
-export default DirectoryItem;
+export default DirectoryItems;

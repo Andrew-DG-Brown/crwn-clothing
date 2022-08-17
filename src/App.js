@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getCatagoriesAndDocuments,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./store/user/user.action.js";
+import { setCategoriesMap } from "./store/categories/categories.action.js";
 
 import Home from "./routes/home/home.component.jsx";
 import Nav from "./routes/navigation/nav.component.jsx";
@@ -17,12 +19,12 @@ import Checkout from "./routes/checkout/checkout.component.jsx";
 const App = () => {
   const dispatch = useDispatch();
 
+  //setting user state in store
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      console.log(user);
       dispatch(setCurrentUser(user));
     });
 

@@ -5,10 +5,8 @@ import { useDispatch } from "react-redux";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
-  getCatagoriesAndDocuments,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./store/user/user.action.js";
-import { setCategoriesMap } from "./store/categories/categories.action.js";
 
 import Home from "./routes/home/home.component.jsx";
 import Nav from "./routes/navigation/nav.component.jsx";

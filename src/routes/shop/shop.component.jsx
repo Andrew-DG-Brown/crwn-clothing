@@ -8,8 +8,8 @@ import { setCategories } from "../../store/categories/categories.action";
 
 import { getCatagoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
-import CategoriesPreview from "../categories-preview/categories-preview.component";
-import Catagory from "../catagory/catagory.component";
+import CategoriesPreview from "../../components/categories-preview/categories-preview.component";
+import Category from "../category/category.component";
 
 import "./shop.styles.scss";
 
@@ -29,7 +29,7 @@ const Shop = () => {
   return (
     <Routes>
       <Route index element={<CategoriesPreview />} />
-      <Route path=":catagory" element={<Catagory />} />
+      <Route path=":category" element={<Category />} />
     </Routes>
   );
 };

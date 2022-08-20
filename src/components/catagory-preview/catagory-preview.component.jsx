@@ -9,13 +9,21 @@ import {
 } from "./category-preview.styles";
 
 const CatagoryPreview = ({ title, products }) => {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <CategoryPreviewContainer>
       <Header>
         <h2>
-          <Title to={title}>{title}</Title>
+          <Title onClick={scrollToTop} to={title}>
+            {title}
+          </Title>
         </h2>
-        <SeeAll to={title}>See All</SeeAll>
+        <SeeAll onClick={scrollToTop} to={title}>
+          See All
+        </SeeAll>
       </Header>
 
       <Preview>

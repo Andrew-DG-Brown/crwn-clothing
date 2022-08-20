@@ -1,4 +1,4 @@
-import "./catagory.styles.scss";
+import "./category.styles.scss";
 
 import { useState, useEffect, Fragment } from "react";
 
@@ -9,22 +9,22 @@ import ProductCard from "../../components/product-card/product-card.component";
 
 import { useParams } from "react-router-dom";
 
-const Catagory = () => {
-  const { catagory } = useParams();
+const Category = () => {
+  const { category } = useParams();
   const categoriesMap = useSelector(categoriesMapSelector);
-  const [products, setProducts] = useState(categoriesMap[catagory]);
+  const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
-    setProducts(categoriesMap[catagory]);
-  }, [catagory, categoriesMap]);
+    setProducts(categoriesMap[category]);
+  }, [category, categoriesMap]);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
     <Fragment>
-      <h2 className="catagory-title">{capitalizeFirstLetter(catagory)}</h2>
-      <div className="catagory-container">
+      <h2 className="category-title">{capitalizeFirstLetter(category)}</h2>
+      <div className="category-container">
         {products &&
           products.map((item) => {
             return <ProductCard key={item.id} product={item} />;
@@ -34,4 +34,4 @@ const Catagory = () => {
   );
 };
 
-export default Catagory;
+export default Category;

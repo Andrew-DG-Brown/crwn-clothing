@@ -15,6 +15,22 @@ export const ModalHeader = styled.span`
   background-color: #059669;
   color: white;
   z-index: 1;
+  animation: slide-in 2.5s ease-in-out;
+
+  @keyframes slide-in {
+    0% {
+      transform: translateY(-45px);
+    }
+    10% {
+      transform: translateY(5px);
+    }
+    80% {
+      transform: translateY(5px);
+    }
+    100% {
+      transform: translateY(-45px);
+    }
+  }
 `;
 
 export const BoldProduct = styled.span`

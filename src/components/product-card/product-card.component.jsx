@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
     setAddedToCart(true);
     setTimeout(() => {
       setAddedToCart(false);
-    }, 3000);
+    }, 2500);
   };
 
   return (

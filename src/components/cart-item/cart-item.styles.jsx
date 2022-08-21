@@ -40,6 +40,7 @@ export const QuantityButtonsContainer = styled.div`
     width: 30px;
     height: 30px;
     border-radius: 50px;
+    cursor: pointer;
 
     &:hover {
       background-color: rgba(211, 211, 211, 0.442);

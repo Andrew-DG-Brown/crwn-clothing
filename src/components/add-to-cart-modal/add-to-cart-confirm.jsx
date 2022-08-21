@@ -1,4 +1,4 @@
-import { ModalHeader, BoldProduct } from "./AddToCartConfirm.styles";
+import { ModalHeader, BoldProduct } from "./add-to-cart-confirm.styles";
 
 const AddToCartConfirm = ({ productName }) => {
   return (

@@ -24,7 +24,7 @@ export const ModalHeader = styled.span`
     10% {
       transform: translateY(5px);
     }
-    80% {
+    90% {
       transform: translateY(5px);
     }
     100% {

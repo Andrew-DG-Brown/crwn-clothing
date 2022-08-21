@@ -6,7 +6,7 @@ import {
   Name,
   Price,
 } from "./product-card.styles";
-import AddToCartConfirm from "../add-to-cart-modal/AddToCartConfirm";
+import AddToCartConfirm from "../add-to-cart-modal/add-to-cart-confirm";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import React, { useContext, useState } from "react";

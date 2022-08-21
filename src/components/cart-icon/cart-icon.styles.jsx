@@ -18,30 +18,19 @@ export const CartIconContainer = styled.div`
 `;
 
 export const ItemCount = styled.span`
+  width: 15px;
+  height: 15px;
+  margin-top: 9px;
+  margin-right: 5px;
   position: absolute;
+  top: 0;
+  right: 0;
   font-size: 10px;
   font-weight: bold;
   bottom: 12px;
+  background-color: #e11d48;
+  color: white;
+  padding: auto;
+  text-align: center;
+  border-radius: 10px;
 `;
-
-// .cart-icon-container {
-//   width: 45px;
-//   height: 45px;
-//   position: relative;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-
-//   .shopping-icon {
-//     width: 24px;
-//     height: 24px;
-//   }
-
-//   .item-count {
-//     position: absolute;
-//     font-size: 10px;
-//     font-weight: bold;
-//     bottom: 12px;
-//   }
-// }

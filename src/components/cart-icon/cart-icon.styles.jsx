@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { ReactComponent as ShoppingSvg } from "../../assets/shopping-bag.svg";
 
@@ -33,4 +33,14 @@ export const ItemCount = styled.span`
   padding: auto;
   text-align: center;
   border-radius: 10px;
+  animation: pop-in 0.2s ease-in-out;
+
+  @keyframes pop-in {
+    from {
+      scale: 0%;
+    }
+    to {
+      scale: 100%;
+    }
+  }
 `;

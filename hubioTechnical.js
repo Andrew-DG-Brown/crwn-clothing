@@ -19,3 +19,18 @@ const missingNum = (array) => {
 
   return missing;
 };
+
+// Screen problem
+
+//store current num in global
+//loop through 2d array and store first 500 in file 1,rest in file 2
+//for the subsequent array, find difference of 500 from the previous
+
+const screenArray = (twoDimArray) => {
+  const width = 1919;
+  const height = 1079;
+
+  for (let i = 0; i <= height; i++) {
+    twoDimArray[i].map((el, index) => {});
+  }
+};

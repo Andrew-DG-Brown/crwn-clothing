@@ -19,7 +19,9 @@ const CheckoutItem = ({ cartItem }) => {
       ? removeCartItem(cartItem)
       : decrementCartQuantity(cartItem);
   };
-  const removeItemHandler = () => removeCartItem(cartItem);
+  const removeItemHandler = () => {
+    removeCartItem(cartItem);
+  };
 
   return (
     <CheckoutItemContainer>

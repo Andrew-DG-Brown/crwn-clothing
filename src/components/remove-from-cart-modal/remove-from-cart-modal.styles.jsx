@@ -16,7 +16,7 @@ export const ModalHeader = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  background-color: #059669;
+  background-color: #e11d48;
   color: white;
   z-index: 1;
   animation: slide-in 2.5s ease-in-out;

@@ -1,3 +1,6 @@
+import { useState, Fragment } from "react";
+
+//Styled Components
 import {
   ProductCardContainer,
   Img,
@@ -6,20 +9,23 @@ import {
   Name,
   Price,
 } from "./product-card.styles";
+
 import AddToCartConfirm from "../add-to-cart-modal/add-to-cart-confirm";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import React, { useContext, useState } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemToCart } from "../../store/cart/cart.actions";
 
 const ProductCard = ({ product }) => {
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const { name, price, imageUrl } = product;
 
   const addProductToCart = () => {
-    addItemToCart(product);
+    dispatch(addItemToCart(cartItems, product));
     setAddedToCart(true);
     setTimeout(() => {
       setAddedToCart(false);
@@ -27,7 +33,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       {addedToCart && <AddToCartConfirm productName={name} />}
       <ProductCardContainer>
         <Img src={imageUrl} alt={`${name}`} />
@@ -42,7 +48,7 @@ const ProductCard = ({ product }) => {
           Add to Cart
         </ProductButton>
       </ProductCardContainer>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

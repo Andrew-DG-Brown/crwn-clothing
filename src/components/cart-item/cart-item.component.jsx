@@ -5,20 +5,26 @@ import {
   QuantityButtonsContainer,
 } from "./cart-item.styles";
 
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decrementCartQuantity,
+  removeCartItem,
+  addItemToCart,
+} from "../../store/cart/cart.actions";
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 const CartItem = ({ cartItem }) => {
-  const { addItemToCart, decrementCartQuantity, removeCartItem } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
   const { name, quantity, imageUrl, price } = cartItem;
 
-  const plusOneQuantity = () => addItemToCart(cartItem);
+  const plusOneQuantity = () => dispatch(addItemToCart(cartItems, cartItem));
   const minusOneQuantity = () => {
     cartItem.quantity === 1
-      ? removeCartItem(cartItem)
-      : decrementCartQuantity(cartItem);
+      ? dispatch(removeCartItem(cartItems, cartItem))
+      : dispatch(decrementCartQuantity(cartItems, cartItem));
   };
 
   return (

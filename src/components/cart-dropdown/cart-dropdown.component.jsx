@@ -1,10 +1,19 @@
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { CartContext } from "../../contexts/cart.context";
-import { useContext } from "react";
 
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCartItems,
+  selectIsCartOpen,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
+import { setIsCartOpen } from "../../store/cart/cart.actions";
+
+//Router
 import { Link } from "react-router-dom";
 
+//Styled Components
 import {
   CartDropdownContainer,
   EmptyMessage,
@@ -13,11 +22,13 @@ import {
 } from "./cart-dropdown.styles";
 
 const CartDropdown = () => {
-  const { cartItems, isCartOpen, setIsCartOpen, cartTotalPrice } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotalPrice = useSelector(selectCartTotal);
 
-  const closeCart = (e) => {
-    setIsCartOpen(!isCartOpen);
+  const closeCart = () => {
+    dispatch(setIsCartOpen(!isCartOpen));
   };
 
   const cartIsEmpty = !cartItems[0];

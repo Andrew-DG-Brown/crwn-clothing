@@ -1,0 +1,3 @@
+export const SEARCH_ACTION_TYPES = {
+  SET_IS_SEARCH_OPEN: "SET_IS_SEARCH_OPEN",
+};

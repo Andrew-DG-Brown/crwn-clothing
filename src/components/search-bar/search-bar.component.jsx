@@ -8,18 +8,26 @@ import { SearchDropdown } from "../search-dropdown/search-dropdown.component";
 
 import { useClickOutside } from "../../utils/hooks/useClickOutside";
 
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsSearchOpen } from "../../store/search/search.selector";
+import { setIsSearchOpen } from "../../store/search/search.actions";
+
 import { useState } from "react";
 
 export const SearchBar = () => {
-  const [inputClicked, setInputClicked] = useState(false);
+  const dispatch = useDispatch();
+  const isSearchOpen = useSelector(selectIsSearchOpen);
+
+  // const [inputClicked, setInputClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const inputClickedTrue = () => {
-    setInputClicked(true);
+    dispatch(setIsSearchOpen(true));
   };
 
   const closeSearch = () => {
-    setInputClicked(false);
+    dispatch(setIsSearchOpen(false));
     setInputValue("");
   };
 
@@ -33,7 +41,7 @@ export const SearchBar = () => {
     <SearchBarContainer
       ref={nodeRef}
       onClick={inputClickedTrue}
-      clicked={inputClicked}
+      clicked={isSearchOpen}
     >
       <SearchIcon />
       <SearchInput

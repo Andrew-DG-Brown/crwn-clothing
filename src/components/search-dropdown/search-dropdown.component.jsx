@@ -21,8 +21,6 @@ export const SearchDropdown = ({ searchInput }) => {
     return setFilteredProducts(filteredProducts);
   }, [searchInput]);
 
-  console.log(filteredProducts);
-
   return (
     <DropdownContainer>
       {searchInput &&

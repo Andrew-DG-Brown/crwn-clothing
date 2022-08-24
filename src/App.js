@@ -1,12 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getCatagoriesAndDocuments,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./store/user/user.action.js";
+import { setCategories } from "./store/categories/categories.action.js";
+import { setIsCartOpen } from "./store/cart/cart.actions.js";
 
 import Home from "./routes/home/home.component.jsx";
 import Nav from "./routes/navigation/nav.component.jsx";
@@ -16,6 +19,12 @@ import Checkout from "./routes/checkout/checkout.component.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  //closes all dropdowns when route changes
+  useEffect(() => {
+    dispatch(setIsCartOpen(false));
+  }, [location, dispatch]);
 
   //setting user state in store
   useEffect(() => {
@@ -27,6 +36,16 @@ const App = () => {
     });
 
     return unsubscribe;
+  }, []);
+
+  //setting state of categoriesMap in store
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoriesArray = await getCatagoriesAndDocuments();
+      dispatch(setCategories(categoriesArray));
+    };
+    getCategoriesMap();
   }, []);
 
   return (

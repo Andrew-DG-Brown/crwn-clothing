@@ -1,6 +1,5 @@
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -20,12 +19,15 @@ import {
   CartItems,
   Footer,
 } from "./cart-dropdown.styles";
+import { useClickOutside } from "../../utils/hooks/useClickOutside";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
   const isCartOpen = useSelector(selectIsCartOpen);
   const cartItems = useSelector(selectCartItems);
   const cartTotalPrice = useSelector(selectCartTotal);
+
+  const domeNodeRef = useClickOutside(() => dispatch(setIsCartOpen(false)));
 
   const closeCart = () => {
     dispatch(setIsCartOpen(!isCartOpen));
@@ -34,7 +36,7 @@ const CartDropdown = () => {
   const cartIsEmpty = !cartItems[0];
 
   return (
-    <CartDropdownContainer>
+    <CartDropdownContainer ref={domeNodeRef}>
       <CartItems>
         {cartIsEmpty && <EmptyMessage>Your cart is empty</EmptyMessage>}
 

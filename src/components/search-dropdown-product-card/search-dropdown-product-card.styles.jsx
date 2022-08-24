@@ -15,10 +15,30 @@ export const Img = styled.img`
   height: 300px;
   object-fit: cover;
   margin-bottom: 5px;
+  animation: fade-in 0.1s ease-in-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
 `;
 
 export const ProductButton = styled(Button)`
   width: 250px;
+  animation: fade-in 0.1s ease-in-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
 `;
 
 export const TextContent = styled.div`
@@ -28,6 +48,16 @@ export const TextContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-size: 18px;
+  animation: fade-in 0.1s ease-in-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
 `;
 
 export const Name = styled.span`

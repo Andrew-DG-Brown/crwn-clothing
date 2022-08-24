@@ -10,6 +10,7 @@ import {
 import { setCurrentUser } from "./store/user/user.action.js";
 import { setCategories } from "./store/categories/categories.action.js";
 import { setIsCartOpen } from "./store/cart/cart.actions.js";
+import { setIsSearchOpen } from "./store/search/search.actions.js";
 
 import Home from "./routes/home/home.component.jsx";
 import Nav from "./routes/navigation/nav.component.jsx";
@@ -24,6 +25,7 @@ const App = () => {
   //closes all dropdowns when route changes
   useEffect(() => {
     dispatch(setIsCartOpen(false));
+    dispatch(setIsSearchOpen(false));
   }, [location, dispatch]);
 
   //setting user state in store

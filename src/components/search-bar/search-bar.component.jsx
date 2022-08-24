@@ -19,7 +19,6 @@ export const SearchBar = () => {
   const dispatch = useDispatch();
   const isSearchOpen = useSelector(selectIsSearchOpen);
 
-  // const [inputClicked, setInputClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const inputClickedTrue = () => {
@@ -28,12 +27,14 @@ export const SearchBar = () => {
 
   const closeSearch = () => {
     dispatch(setIsSearchOpen(false));
-    setInputValue("");
   };
 
   const nodeRef = useClickOutside(() => closeSearch());
 
   const onChangeInputHandler = (e) => {
+    if (!isSearchOpen) {
+      dispatch(setIsSearchOpen(true));
+    }
     setInputValue(e.target.value);
   };
 
@@ -50,7 +51,7 @@ export const SearchBar = () => {
         type="text"
         placeholder="Search"
       />
-      <SearchDropdown searchInput={inputValue} />
+      <SearchDropdown searchInput={inputValue} isSearchOpen={isSearchOpen} />
     </SearchBarContainer>
   );
 };

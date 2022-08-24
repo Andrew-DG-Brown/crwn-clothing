@@ -7,7 +7,7 @@ import { selectCategories } from "../../store/categories/categories.selector";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export const SearchDropdown = ({ searchInput }) => {
+export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
   const products = useSelector(selectCategories).reduce((accum, category) => {
     return (accum = [...accum, ...category.items]);
   }, []);
@@ -23,7 +23,7 @@ export const SearchDropdown = ({ searchInput }) => {
 
   return (
     <DropdownContainer>
-      {searchInput &&
+      {isSearchOpen &&
         filteredProducts.map((product) => {
           return <SearchProductCard product={product} key={product.id} />;
         })}

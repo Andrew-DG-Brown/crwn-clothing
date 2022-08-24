@@ -4,6 +4,8 @@ import {
   SearchIcon,
 } from "./search-bar.style";
 
+import { Fragment, useRef } from "react";
+
 import { SearchDropdown } from "../search-dropdown/search-dropdown.component";
 
 import { useClickOutside } from "../../utils/hooks/useClickOutside";
@@ -21,15 +23,18 @@ export const SearchBar = () => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const inputClickedTrue = () => {
-    dispatch(setIsSearchOpen(true));
-  };
-
   const closeSearch = () => {
     dispatch(setIsSearchOpen(false));
   };
+  const containerNodeRef = useClickOutside(() => closeSearch());
+  const inputRef = useRef();
 
-  const nodeRef = useClickOutside(() => closeSearch());
+  const inputClicked = () => {
+    inputRef.current.focus();
+    if (!isSearchOpen) {
+      dispatch(setIsSearchOpen(true));
+    }
+  };
 
   const onChangeInputHandler = (e) => {
     if (!isSearchOpen) {
@@ -39,19 +44,22 @@ export const SearchBar = () => {
   };
 
   return (
-    <SearchBarContainer
-      ref={nodeRef}
-      onClick={inputClickedTrue}
-      clicked={isSearchOpen}
-    >
-      <SearchIcon />
-      <SearchInput
-        onChange={onChangeInputHandler}
-        value={inputValue}
-        type="text"
-        placeholder="Search"
-      />
+    <Fragment>
+      <SearchBarContainer
+        ref={containerNodeRef}
+        onClick={inputClicked}
+        clicked={isSearchOpen}
+      >
+        <SearchIcon />
+        <SearchInput
+          ref={inputRef}
+          onChange={onChangeInputHandler}
+          value={inputValue}
+          type="text"
+          placeholder="Search"
+        />
+      </SearchBarContainer>
       <SearchDropdown searchInput={inputValue} isSearchOpen={isSearchOpen} />
-    </SearchBarContainer>
+    </Fragment>
   );
 };

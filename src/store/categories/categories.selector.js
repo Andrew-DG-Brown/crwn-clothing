@@ -18,3 +18,19 @@ export const categoriesMapSelector = createSelector(
     }, {});
   }
 );
+
+export const selectAllProducts = createSelector(
+  [selectCategories],
+  (categoriesArray) =>
+    categoriesArray.reduce((accum, category) => {
+      return (accum = [...accum, ...category.items]);
+    }, [])
+);
+
+export const selectCategoryTitles = createSelector(
+  [selectCategories],
+  (categoryArray) =>
+    categoryArray.map((category) => {
+      return category.title;
+    })
+);

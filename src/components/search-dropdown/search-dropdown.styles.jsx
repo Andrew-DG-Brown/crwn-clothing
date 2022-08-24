@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DropdownContainer = styled.div`
   position: absolute;
   padding: 0 20px;
-  width: 700px;
+  width: 1400px;
   background-color: white;
   box-shadow: 0 50px 50px rgba(0, 0, 0, 0.3);
   border-top: none;

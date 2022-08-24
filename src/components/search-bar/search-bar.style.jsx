@@ -10,9 +10,9 @@ export const SearchBarContainer = styled.div`
   border-radius: 50px;
   padding: 8px;
   transition: all 0.1s ease-in-out;
+  cursor: pointer;
   &:hover {
     background-color: #e4e4e7;
-    cursor: pointer;
   }
 `;
 

@@ -16,6 +16,7 @@ export const DropdownContainer = styled.div`
   left: 0;
   margin: 0 auto;
   z-index: 4;
+  border-radius: 0 0 20px 20px;
   transition: height 0.5s;
   animation: fade-in 0.1s ease-in-out;
 

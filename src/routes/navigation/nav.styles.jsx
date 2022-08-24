@@ -8,12 +8,16 @@ export const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  box-shadow: ${(props) =>
+    props.isSearchOpen ? "0 0 200px 5000px rgba(0, 0, 0, 0.5)" : ""};
+  border-radius: 20px;
+  transition: all 0.15s;
 `;
 
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
-  padding: 25px;
+  padding: 15px;
 `;
 
 export const NavLinksContainer = styled.div`

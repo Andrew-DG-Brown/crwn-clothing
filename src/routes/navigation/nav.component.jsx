@@ -1,16 +1,20 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import { SearchBar } from "../../components/search-bar/search-bar.component";
 
+//Redux
 import { useSelector } from "react-redux/es/exports";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { selectIsSearchOpen } from "../../store/search/search.selector";
 
+//Firebase
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
+//Components
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { SearchBar } from "../../components/search-bar/search-bar.component";
 
 import {
   NavigationContainer,
@@ -22,10 +26,11 @@ import {
 const Nav = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+  const isSearchOpen = useSelector(selectIsSearchOpen);
 
   return (
     <Fragment>
-      <NavigationContainer>
+      <NavigationContainer isSearchOpen={isSearchOpen}>
         <LogoContainer to="/">
           <CrwnLogo className="logo" />
         </LogoContainer>

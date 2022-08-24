@@ -21,6 +21,7 @@ export const ProductCardContainer = styled.div`
 `;
 
 export const Img = styled.img`
+  z-index: -1;
   width: 100%;
   height: 95%;
   object-fit: cover;

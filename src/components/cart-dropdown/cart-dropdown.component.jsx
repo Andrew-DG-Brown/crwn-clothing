@@ -27,7 +27,7 @@ const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotalPrice = useSelector(selectCartTotal);
 
-  const domeNodeRef = useClickOutside(() => dispatch(setIsCartOpen(false)));
+  const domeNodeRef = useClickOutside(() => closeCart());
 
   const closeCart = () => {
     dispatch(setIsCartOpen(!isCartOpen));

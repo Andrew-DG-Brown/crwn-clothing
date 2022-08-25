@@ -3,6 +3,7 @@ import {
   ItemDetails,
   Name,
   QuantityButtonsContainer,
+  Img,
 } from "./cart-item.styles";
 
 //Redux
@@ -29,10 +30,10 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <CartItemContainer>
-      <img src={`${imageUrl}`} alt={name} />
+      <Img imageUrl={imageUrl} alt={name} />
       <ItemDetails>
         <Name>{name}</Name>
-        <span className="price">
+        <span>
           {quantity} x ${price}
         </span>
       </ItemDetails>

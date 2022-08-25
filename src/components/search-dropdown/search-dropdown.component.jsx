@@ -7,7 +7,8 @@ import {
 
 import { SearchProductCard } from "../search-dropdown-product-card/search-dropdown-product-card.component";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsSearchOpen } from "../../store/search/search.actions";
 import {
   selectAllProducts,
   selectCategoryTitles,
@@ -15,11 +16,16 @@ import {
 import { useState, useEffect, Fragment } from "react";
 
 export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
+  const dispatch = useDispatch();
   const allProducts = useSelector(selectAllProducts);
   const categoryTitles = useSelector(selectCategoryTitles);
 
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
   const [filteredCategories, setFilteredCategories] = useState(categoryTitles);
+
+  const closeSearch = () => {
+    dispatch(setIsSearchOpen(false));
+  };
 
   //set filtered products
   useEffect(() => {
@@ -47,7 +53,7 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
             {categoryTitles.map((title) => {
               const route = `shop/${title.toLowerCase()}`;
               return (
-                <CategoryLink key={title} to={route}>
+                <CategoryLink key={title} to={route} onClick={closeSearch}>
                   {title}
                 </CategoryLink>
               );
@@ -61,18 +67,22 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
         {isSearchOpen && searchInput && (
           <CategoryLinksContainer active>
             <Fragment>
-              <h2>Categories for {`"${searchInput}"`}</h2>
+              <h2>Categories and products for {`"${searchInput}"`}</h2>
               {filteredCategories[0] ? (
                 filteredCategories.map((title) => {
                   const route = `shop/${title.toLowerCase()}`;
                   return (
-                    <CategoryLink key={title} to={route}>
+                    <CategoryLink key={title} to={route} onClick={closeSearch}>
                       {title}
                     </CategoryLink>
                   );
                 })
               ) : (
-                <span>No categories found</span>
+                <span>
+                  {!filteredCategories[0] && !filteredProducts[0]
+                    ? "No results found"
+                    : "No categories found"}
+                </span>
               )}
             </Fragment>
           </CategoryLinksContainer>

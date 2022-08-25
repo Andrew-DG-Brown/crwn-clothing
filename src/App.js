@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -22,11 +22,13 @@ const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const currentPath = useRef(location.pathname);
+
   //closes all dropdowns when route changes
   useEffect(() => {
     dispatch(setIsCartOpen(false));
     dispatch(setIsSearchOpen(false));
-  }, [location, dispatch]);
+  }, [currentPath]);
 
   //setting user state in store
   useEffect(() => {

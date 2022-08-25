@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { ReactComponent as ShoppingSvg } from "../../assets/shopping-bag.svg";
 
@@ -15,6 +15,7 @@ export const CartIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: ${(props) => (props.isCartOpen ? "-1" : "")};
 `;
 
 export const ItemCount = styled.span`

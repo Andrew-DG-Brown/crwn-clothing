@@ -13,7 +13,7 @@ export const NavigationContainer = styled.div`
       ? "0 0 200px 5000px rgba(0, 0, 0, 0.5)"
       : ""};
   border-radius: ${(props) => (props.isCartOpen ? "20px 20px 0 20px" : "20px")};
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.05s;
 `;
 
 export const LogoContainer = styled(Link)`

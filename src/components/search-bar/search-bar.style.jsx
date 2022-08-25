@@ -10,7 +10,6 @@ export const SearchBarContainer = styled.div`
   border-radius: 50px;
   padding: 8px;
   transition: all 0.1s ease-in-out;
-  cursor: pointer;
   &:hover {
     background-color: #e4e4e7;
   }
@@ -22,6 +21,7 @@ export const SearchInput = styled.input`
   padding: 5px;
   background: none;
   font-size: 15px;
+
   &::placeholder {
     color: #94a3b8;
   }
@@ -32,4 +32,5 @@ export const SearchInput = styled.input`
 
 export const SearchIcon = styled(SearchLogo)`
   width: 20px;
+  cursor: pointer;
 `;

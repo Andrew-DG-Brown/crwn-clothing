@@ -8,9 +8,13 @@ import {
   Preview,
 } from "./category-preview.styles";
 
-const CatagoryPreview = ({ title, products }) => {
+const CategoryPreview = ({ title, products }) => {
   const scrollToTop = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -37,4 +41,4 @@ const CatagoryPreview = ({ title, products }) => {
   );
 };
 
-export default CatagoryPreview;
+export default CategoryPreview;

@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const DropdownContainer = styled.div`
   position: absolute;
   padding: 0 20px;
-  width: 1400px;
+  width: ${(props) => (props.narrow ? "800px" : "1400px")};
   background-color: white;
   box-shadow: 0 50px 50px rgba(0, 0, 0, 0.3);
   border-top: none;
@@ -27,5 +28,21 @@ export const DropdownContainer = styled.div`
     to {
       opacity: 100%;
     }
+  }
+`;
+
+export const CategoryLinksContainer = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+`;
+
+export const CategoryLink = styled(Link)`
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  &:hover {
+    background-color: #f4f4f5;
+    border-radius: 10px;
   }
 `;

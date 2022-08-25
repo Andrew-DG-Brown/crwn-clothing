@@ -1,14 +1,21 @@
-import { DropdownContainer } from "./search-dropdown.styles";
+import {
+  DropdownContainer,
+  CategoryLinksContainer,
+  CategoryLink,
+} from "./search-dropdown.styles";
 
 import { SearchProductCard } from "../search-dropdown-product-card/search-dropdown-product-card.component";
 
 import { useSelector } from "react-redux";
-import { selectAllProducts } from "../../store/categories/categories.selector";
+import {
+  selectAllProducts,
+  selectCategoryTitles,
+} from "../../store/categories/categories.selector";
 import { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
 
 export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
   const allProducts = useSelector(selectAllProducts);
+  const categoryTitles = useSelector(selectCategoryTitles);
 
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
@@ -22,16 +29,18 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
   return (
     <Fragment>
       {!searchInput && isSearchOpen && (
-        <DropdownContainer>
+        <DropdownContainer narrow>
           <h2>Shop by Categories</h2>
-          <div>
-            <p>pants</p>
-            <p>pants</p>
-            <p>pants</p>
-            <p>pants</p>
-            <p>pants</p>
-            <p>pants</p>
-          </div>
+          <CategoryLinksContainer>
+            {categoryTitles.map((title) => {
+              const route = `shop/${title.toLowerCase()}`;
+              return (
+                <CategoryLink key={title} to={route}>
+                  {title}
+                </CategoryLink>
+              );
+            })}
+          </CategoryLinksContainer>
         </DropdownContainer>
       )}
       <DropdownContainer>

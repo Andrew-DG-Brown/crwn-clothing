@@ -58,8 +58,8 @@ export const SearchBar = () => {
           type="text"
           placeholder="Search"
         />
+        <SearchDropdown searchInput={inputValue} isSearchOpen={isSearchOpen} />
       </SearchBarContainer>
-      <SearchDropdown searchInput={inputValue} isSearchOpen={isSearchOpen} />
     </Fragment>
   );
 };

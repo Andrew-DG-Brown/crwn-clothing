@@ -1,16 +1,20 @@
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import SignInForm from "../../components/sign-in-form/sign-in-form.component";
-import "./authentication.styles.scss";
+import { AuthContainer, AuthFormsContainer } from "./authentication.styles";
 
+import { useSelector } from "react-redux/es/exports";
+import { selectIsSearchOpen } from "../../store/search/search.selector";
 const Authentication = () => {
+  const isSearchOpen = useSelector(selectIsSearchOpen);
+
   return (
-    <div className="authentication-container">
+    <AuthContainer>
       <h1>Sign In Page</h1>
-      <div className="auth-forms-container">
+      <AuthFormsContainer isSearchOpen={isSearchOpen}>
         <SignInForm />
         <SignUpForm />
-      </div>
-    </div>
+      </AuthFormsContainer>
+    </AuthContainer>
   );
 };
 

@@ -6,6 +6,8 @@ import {
 } from "./directory-item.styles";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/es/exports";
+import { selectIsSearchOpen } from "../../store/search/search.selector";
 
 const categories = [
   {
@@ -46,13 +48,18 @@ const categories = [
 
 const DirectoryItems = () => {
   const navigate = useNavigate();
+  const isSearchOpen = useSelector(selectIsSearchOpen);
 
   return categories.map(({ id, title, imageUrl, route }) => {
     const onNavigateHandler = () => {
       navigate(route);
     };
     return (
-      <DirectoryItemContainer key={id} onClick={onNavigateHandler}>
+      <DirectoryItemContainer
+        key={id}
+        onClick={onNavigateHandler}
+        isSearchOpen={isSearchOpen}
+      >
         <BackgroundImage imageUrl={imageUrl}>
           <Body>
             <h2>{title}</h2>

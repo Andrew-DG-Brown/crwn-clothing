@@ -10,6 +10,7 @@ export const CheckoutItemContainer = styled.div`
 
   img {
     width: 100px;
+    z-index: -1;
   }
 
   h2 {

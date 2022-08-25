@@ -18,7 +18,9 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
   const categoryTitles = useSelector(selectCategoryTitles);
 
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
+  const [filteredCategories, setFilteredCategories] = useState(categoryTitles);
 
+  //set filtered products
   useEffect(() => {
     const filteredProducts = allProducts.filter((product) => {
       return product.name.toLowerCase().includes(searchInput.toLowerCase());
@@ -26,11 +28,20 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
     return setFilteredProducts(filteredProducts);
   }, [searchInput]);
 
+  //set filtered categories
+  useEffect(() => {
+    const filteredCategories = categoryTitles.filter((title) => {
+      return title.toLowerCase().includes(searchInput.toLowerCase());
+    });
+    return setFilteredCategories(filteredCategories);
+  }, [searchInput]);
+
   return (
     <Fragment>
+      {/* === Default  "Shop by categories" dropdown === */}
       {!searchInput && isSearchOpen && (
         <DropdownContainer narrow>
-          <h2>Shop by Categories</h2>
+          <h2>Shop by categories</h2>
           <CategoryLinksContainer>
             {categoryTitles.map((title) => {
               const route = `shop/${title.toLowerCase()}`;
@@ -43,7 +54,21 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
           </CategoryLinksContainer>
         </DropdownContainer>
       )}
-      <DropdownContainer>
+      {/* === Active search dropdown === */}
+      <DropdownContainer active>
+        {isSearchOpen && searchInput && (
+          <CategoryLinksContainer>
+            {filteredCategories.map((title) => {
+              const route = `shop/${title.toLowerCase()}`;
+              return (
+                <CategoryLink key={title} to={route}>
+                  {title}
+                </CategoryLink>
+              );
+            })}
+          </CategoryLinksContainer>
+        )}
+
         {isSearchOpen &&
           searchInput &&
           filteredProducts.map((product, index) => {

@@ -9,7 +9,7 @@ export const DropdownContainer = styled.div`
   box-shadow: 0 50px 50px rgba(0, 0, 0, 0.3);
   border-top: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.active ? "row" : "column")};
   justify-content: space-between;
   align-items: center;
   top: 90px;

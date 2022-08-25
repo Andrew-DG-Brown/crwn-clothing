@@ -4,9 +4,10 @@ import Button from "../button/button.component";
 export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 350px;
-  align-items: center;
+  /* align-items: center; */
   margin: 30px 0;
 `;
 
@@ -14,7 +15,7 @@ export const Img = styled.img`
   width: 300px;
   height: 300px;
   object-fit: cover;
-  margin-bottom: 5px;
+  margin-bottom: 14px;
   animation: fade-in 0.1s ease-in-out;
 
   @keyframes fade-in {
@@ -44,9 +45,9 @@ export const ProductButton = styled(Button)`
 export const TextContent = styled.div`
   display: flex;
   height: 50%;
-  margin-left: 20px;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
   font-size: 18px;
   animation: fade-in 0.1s ease-in-out;
 
@@ -61,13 +62,13 @@ export const TextContent = styled.div`
 `;
 
 export const Name = styled.span`
-  width: 90%;
-  margin-bottom: 15px;
-  font-size: 25px;
+  width: 100%;
+  margin-bottom: 3px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 export const Price = styled.span`
   width: 10%;
-  text-align: right;
+  margin-bottom: 15px;
 `;

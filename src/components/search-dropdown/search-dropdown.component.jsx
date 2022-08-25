@@ -2,6 +2,7 @@ import {
   DropdownContainer,
   CategoryLinksContainer,
   CategoryLink,
+  DropdownProductsContainer,
 } from "./search-dropdown.styles";
 
 import { SearchProductCard } from "../search-dropdown-product-card/search-dropdown-product-card.component";
@@ -56,6 +57,7 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
       )}
       {/* === Active search dropdown === */}
       <DropdownContainer active>
+        {/* === Active Categories List === */}
         {isSearchOpen && searchInput && (
           <CategoryLinksContainer>
             {filteredCategories.map((title) => {
@@ -68,14 +70,20 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
             })}
           </CategoryLinksContainer>
         )}
-
-        {isSearchOpen &&
-          searchInput &&
-          filteredProducts.map((product, index) => {
-            if (index < 12) {
-              return <SearchProductCard product={product} key={product.id} />;
-            }
-          })}
+        {/* === Active Product Grid === */}
+        {isSearchOpen && searchInput && (
+          <DropdownProductsContainer>
+            {isSearchOpen &&
+              searchInput &&
+              filteredProducts.map((product, index) => {
+                if (index < 12) {
+                  return (
+                    <SearchProductCard product={product} key={product.id} />
+                  );
+                }
+              })}
+          </DropdownProductsContainer>
+        )}
       </DropdownContainer>
     </Fragment>
   );

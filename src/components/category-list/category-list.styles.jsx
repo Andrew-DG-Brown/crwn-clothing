@@ -6,10 +6,3 @@ export const CategoriesContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
-
-// .categories-container {
-//   width: 100%;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-// }

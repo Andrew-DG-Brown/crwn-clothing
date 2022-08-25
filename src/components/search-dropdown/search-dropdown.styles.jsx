@@ -46,3 +46,11 @@ export const CategoryLink = styled(Link)`
     border-radius: 10px;
   }
 `;
+
+export const DropdownProductsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 60px;
+  row-gap: 60px;
+  padding: 50px 20px 50px 0;
+`;

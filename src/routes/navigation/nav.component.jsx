@@ -30,7 +30,7 @@ const Nav = () => {
 
   return (
     <Fragment>
-      <NavigationContainer isSearchOpen={isSearchOpen}>
+      <NavigationContainer isSearchOpen={isSearchOpen} isCartOpen={isCartOpen}>
         <LogoContainer to="/">
           <CrwnLogo className="logo" />
         </LogoContainer>

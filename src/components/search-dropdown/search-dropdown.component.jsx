@@ -59,15 +59,22 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
       <DropdownContainer active>
         {/* === Active Categories List === */}
         {isSearchOpen && searchInput && (
-          <CategoryLinksContainer>
-            {filteredCategories.map((title) => {
-              const route = `shop/${title.toLowerCase()}`;
-              return (
-                <CategoryLink key={title} to={route}>
-                  {title}
-                </CategoryLink>
-              );
-            })}
+          <CategoryLinksContainer active>
+            <Fragment>
+              <h2>Categories for {`"${searchInput}"`}</h2>
+              {filteredCategories[0] ? (
+                filteredCategories.map((title) => {
+                  const route = `shop/${title.toLowerCase()}`;
+                  return (
+                    <CategoryLink key={title} to={route}>
+                      {title}
+                    </CategoryLink>
+                  );
+                })
+              ) : (
+                <span>No categories found</span>
+              )}
+            </Fragment>
           </CategoryLinksContainer>
         )}
         {/* === Active Product Grid === */}

@@ -11,7 +11,7 @@ export const DropdownContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.active ? "row" : "column")};
   justify-content: space-between;
-  align-items: center;
+  align-items: ${(props) => (props.active ? "" : "center")};
   top: 90px;
   right: 0;
   left: 0;
@@ -33,11 +33,16 @@ export const DropdownContainer = styled.div`
 
 export const CategoryLinksContainer = styled.div`
   display: flex;
+  flex-direction: ${(props) => (props.active ? "column" : "")};
+  height: ${(props) => (props.active ? "100%" : "")};
+  padding: ${(props) => (props.active ? "10px" : "")};
+
   margin-bottom: 20px;
 `;
 
 export const CategoryLink = styled(Link)`
   padding: 10px 15px;
+  width: fit-content;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.15s;

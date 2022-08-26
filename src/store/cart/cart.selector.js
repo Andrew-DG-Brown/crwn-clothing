@@ -21,3 +21,11 @@ export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
     return accum + cartItem.price * cartItem.quantity;
   }, 0)
 );
+
+export const selectCurrentCartItemQuantity = (product) =>
+  createSelector([selectCartItems], (cartItems) => {
+    const item = cartItems.find((item) => {
+      return item.name === product.name;
+    });
+    return item ? item.quantity : null;
+  });

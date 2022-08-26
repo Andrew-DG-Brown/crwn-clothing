@@ -1,11 +1,9 @@
 import {
   DropdownContainer,
   CategoryLinksContainer,
-  CategoryLink,
   DropdownProductsContainer,
 } from "./search-dropdown.styles";
 
-import { SearchProductCard } from "../search-dropdown-product-card/search-dropdown-product-card.component";
 import { ShopByCategoriesLink } from "../shop-by-categories-link/shop-by-categories-link.component";
 import { FilteredSearchCategories } from "../filtered-search-categories/filtered-search-categories.component";
 import { FilteredSearchProducts } from "../filtered-search-products/filtered-search-products.components";

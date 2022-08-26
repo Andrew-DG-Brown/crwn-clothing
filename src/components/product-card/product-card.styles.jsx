@@ -54,3 +54,37 @@ export const Price = styled.span`
   width: 10%;
   text-align: right;
 `;
+
+export const QuantityInCart = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: fit-content;
+  height: 40px;
+  padding: 0px 0.8rem;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  top: -30px;
+  right: -10px;
+  text-align: center;
+  background-color: #e11d48;
+  color: white;
+  z-index: 1;
+  animation: pop-in 0.2s ease-in-out;
+  span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  @keyframes pop-in {
+    from {
+      scale: 0%;
+    }
+    to {
+      scale: 100%;
+    }
+  }
+`;

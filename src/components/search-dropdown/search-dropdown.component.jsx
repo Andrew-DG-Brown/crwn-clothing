@@ -6,6 +6,9 @@ import {
 } from "./search-dropdown.styles";
 
 import { SearchProductCard } from "../search-dropdown-product-card/search-dropdown-product-card.component";
+import { ShopByCategoriesLink } from "../shop-by-categories-link/shop-by-categories-link.component";
+import { FilteredSearchCategories } from "../filtered-search-categories/filtered-search-categories.component";
+import { FilteredSearchProducts } from "../filtered-search-products/filtered-search-products.components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setIsSearchOpen } from "../../store/search/search.actions";
@@ -50,14 +53,7 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
         <DropdownContainer narrow>
           <h2>Shop by categories</h2>
           <CategoryLinksContainer>
-            {categoryTitles.map((title) => {
-              const route = `shop/${title.toLowerCase()}`;
-              return (
-                <CategoryLink key={title} to={route} onClick={closeSearch}>
-                  {title}
-                </CategoryLink>
-              );
-            })}
+            <ShopByCategoriesLink categoryTitles={categoryTitles} closeSearch={closeSearch}/>
           </CategoryLinksContainer>
         </DropdownContainer>
       )}
@@ -66,17 +62,9 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
         {/* === Active Categories List === */}
         {isSearchOpen && searchInput && (
           <CategoryLinksContainer active>
-            <Fragment>
               <h2>Categories and products for {`"${searchInput}"`}</h2>
               {filteredCategories[0] ? (
-                filteredCategories.map((title) => {
-                  const route = `shop/${title.toLowerCase()}`;
-                  return (
-                    <CategoryLink key={title} to={route} onClick={closeSearch}>
-                      {title}
-                    </CategoryLink>
-                  );
-                })
+                <FilteredSearchCategories filteredCategories={filteredCategories} closeSearch={closeSearch}/>
               ) : (
                 <span>
                   {!filteredCategories[0] && !filteredProducts[0]
@@ -84,7 +72,6 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
                     : "No categories found"}
                 </span>
               )}
-            </Fragment>
           </CategoryLinksContainer>
         )}
         {/* === Active Product Grid === */}
@@ -92,13 +79,7 @@ export const SearchDropdown = ({ searchInput, isSearchOpen }) => {
           <DropdownProductsContainer>
             {isSearchOpen &&
               searchInput &&
-              filteredProducts.map((product, index) => {
-                if (index < 12) {
-                  return (
-                    <SearchProductCard product={product} key={product.id} />
-                  );
-                }
-              })}
+              <FilteredSearchProducts filteredProducts={filteredProducts}/>}
           </DropdownProductsContainer>
         )}
       </DropdownContainer>

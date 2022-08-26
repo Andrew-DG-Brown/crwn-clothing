@@ -2,7 +2,6 @@ import {
   CartItemContainer,
   ItemDetails,
   Name,
-  QuantityButtonsContainer,
   Img,
   RemoveButton,
 } from "./cart-item.styles";

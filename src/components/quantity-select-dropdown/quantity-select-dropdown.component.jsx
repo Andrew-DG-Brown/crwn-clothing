@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { changeCartItemQuantity } from "../../store/cart/cart.actions";
 
+import { QuantitySelect } from "./quantity-select-dropdown.styles";
+
 export const QuantitySelectDropdown = ({ cartItem, cartItems }) => {
   const dispatch = useDispatch();
 
@@ -10,7 +12,7 @@ export const QuantitySelectDropdown = ({ cartItem, cartItems }) => {
   };
   return (
     <div>
-      <select
+      <QuantitySelect
         name="quantity"
         value={cartItem.quantity}
         onChange={(e) => changeQuantityHandler(e.target.value)}
@@ -25,7 +27,7 @@ export const QuantitySelectDropdown = ({ cartItem, cartItems }) => {
         <option value={8}>8</option>
         <option value={9}>9</option>
         <option value={10}>10</option>
-      </select>
+      </QuantitySelect>
     </div>
   );
 };

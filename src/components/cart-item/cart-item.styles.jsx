@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const CartItemContainer = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   height: 80px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 `;
 
 export const Img = styled.div`
@@ -19,10 +20,13 @@ export const Img = styled.div`
 export const ItemDetails = styled.div`
   width: 70%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+
+  align-items: center;
   padding: 10px 20px;
+  div {
+    display: flex;
+    width: 90px;
+  }
 `;
 
 export const Name = styled.span`
@@ -30,28 +34,24 @@ export const Name = styled.span`
   font-weight: bold;
 `;
 
-export const QuantityButtonsContainer = styled.div`
+export const RemoveButton = styled.button`
+  margin: 0px;
+
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
   display: flex;
-  width: 130px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  padding: 5px 5px 7.5px 5.5px;
+  background-color: rgba(211, 211, 211, 0.4);
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
 
-  button {
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    background-color: rgba(211, 211, 211, 0.4);
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: rgba(211, 211, 211, 0.642);
-    }
+  &:hover {
+    background-color: black;
+    color: white;
   }
 `;

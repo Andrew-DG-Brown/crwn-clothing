@@ -11,10 +11,6 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
-
-  button {
-    margin: 15px auto 0 auto;
-  }
 `;
 
 export const EmptyMessage = styled.span`

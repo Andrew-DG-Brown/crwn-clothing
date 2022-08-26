@@ -7,6 +7,7 @@ export const CheckoutItemContainer = styled.div`
   align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid rgba(128, 128, 128, 0.543);
+  z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
 
   img {
     width: 100px;

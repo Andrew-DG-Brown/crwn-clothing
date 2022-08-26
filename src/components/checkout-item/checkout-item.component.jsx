@@ -4,49 +4,33 @@ import {
   DeleteButton,
 } from "./checkout-item.styles";
 
+import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
+
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-  decrementCartQuantity,
-  addItemToCart,
-  removeCartItem,
-  changeCartItemQuantity,
-} from "../../store/cart/cart.actions";
+import { removeCartItem } from "../../store/cart/cart.actions";
 import { selectCartItems } from "../../store/cart/cart.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { selectIsSearchOpen } from "../../store/search/search.selector";
 
 const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const isSearchOpen = useSelector(selectIsSearchOpen);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
-  const { name, quantity, imageUrl, price } = cartItem;
-
-  // const quantityIncrement = () => dispatch(addItemToCart(cartItems, cartItem));
-
-  // const minusOneHandler = () => {
-  //   cartItem.quantity === 1
-  //     ? dispatch(removeCartItem(cartItems, cartItem))
-  //     : dispatch(decrementCartQuantity(cartItems, cartItem));
-  // };
+  const { name, imageUrl, price } = cartItem;
 
   const removeItemHandler = () => {
     dispatch(removeCartItem(cartItems, cartItem));
   };
 
-  const changeQuantityHandler = (eventInput) => {
-    const newQuantity = parseInt(eventInput);
-    dispatch(changeCartItemQuantity(cartItems, cartItem, newQuantity));
-  };
-
   return (
-    <CheckoutItemContainer>
+    <CheckoutItemContainer isSearchOpen={isSearchOpen} isCartOpen={isCartOpen}>
       <img src={`${imageUrl}`} alt={name} />
       <h2>{name}</h2>
       <QuantityContainer>
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => changeQuantityHandler(e.target.value)}
-        />
+        <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} />
       </QuantityContainer>
       <h2>${price}</h2>
       <DeleteButton onClick={removeItemHandler}>&#10005;</DeleteButton>

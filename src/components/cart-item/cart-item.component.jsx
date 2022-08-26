@@ -4,28 +4,23 @@ import {
   Name,
   QuantityButtonsContainer,
   Img,
+  RemoveButton,
 } from "./cart-item.styles";
+import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decrementCartQuantity,
-  removeCartItem,
-  addItemToCart,
-} from "../../store/cart/cart.actions";
+import { removeCartItem } from "../../store/cart/cart.actions";
 import { selectCartItems } from "../../store/cart/cart.selector";
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
-  const { name, quantity, imageUrl, price } = cartItem;
+  const { name, imageUrl, price } = cartItem;
 
-  const plusOneQuantity = () => dispatch(addItemToCart(cartItems, cartItem));
-  const minusOneQuantity = () => {
-    cartItem.quantity === 1
-      ? dispatch(removeCartItem(cartItems, cartItem))
-      : dispatch(decrementCartQuantity(cartItems, cartItem));
+  const removeItemHandler = () => {
+    dispatch(removeCartItem(cartItems, cartItem));
   };
 
   return (
@@ -33,14 +28,12 @@ const CartItem = ({ cartItem }) => {
       <Img imageUrl={imageUrl} alt={name} />
       <ItemDetails>
         <Name>{name}</Name>
-        <span>
-          {quantity} x ${price}
-        </span>
+        <div>
+          <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} /> x
+          <span> ${price}</span>
+        </div>
       </ItemDetails>
-      <QuantityButtonsContainer>
-        <button onClick={minusOneQuantity}>{`-`}</button>
-        <button onClick={plusOneQuantity}>{`+`}</button>
-      </QuantityButtonsContainer>
+      <RemoveButton onClick={removeItemHandler}>&#10005;</RemoveButton>
     </CartItemContainer>
   );
 };

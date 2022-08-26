@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/exports";
 import { selectIsSearchOpen } from "../../store/search/search.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const categories = [
   {
@@ -49,6 +50,7 @@ const categories = [
 const DirectoryItems = () => {
   const navigate = useNavigate();
   const isSearchOpen = useSelector(selectIsSearchOpen);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return categories.map(({ id, title, imageUrl, route }) => {
     const onNavigateHandler = () => {
@@ -59,6 +61,7 @@ const DirectoryItems = () => {
         key={id}
         onClick={onNavigateHandler}
         isSearchOpen={isSearchOpen}
+        isCartOpen={isCartOpen}
       >
         <BackgroundImage imageUrl={imageUrl}>
           <Body>

@@ -19,15 +19,12 @@ import {
   CartItems,
   Footer,
 } from "./cart-dropdown.styles";
-import { useClickOutside } from "../../utils/hooks/useClickOutside";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
   const isCartOpen = useSelector(selectIsCartOpen);
   const cartItems = useSelector(selectCartItems);
   const cartTotalPrice = useSelector(selectCartTotal);
-
-  const domeNodeRef = useClickOutside(() => closeCart());
 
   const closeCart = () => {
     dispatch(setIsCartOpen(!isCartOpen));
@@ -36,7 +33,7 @@ const CartDropdown = () => {
   const cartIsEmpty = !cartItems[0];
 
   return (
-    <CartDropdownContainer ref={domeNodeRef}>
+    <CartDropdownContainer>
       <CartItems>
         {cartIsEmpty && <EmptyMessage>Your cart is empty</EmptyMessage>}
 

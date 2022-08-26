@@ -47,7 +47,7 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
-  z-index: ${(props) => (props.isSearchOpen ? "-1" : "")};
+  z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
 
   &:hover {
     cursor: pointer;

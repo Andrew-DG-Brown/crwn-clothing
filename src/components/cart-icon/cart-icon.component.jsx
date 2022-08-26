@@ -12,12 +12,16 @@ const CartIcon = () => {
   const cartTotalQuantity = useSelector(selectCartCount);
   const dispatch = useDispatch();
 
-  const cartOpen = () => {
-    dispatch(setIsCartOpen(true));
+  const cartOpenToggle = () => {
+    if (!isCartOpen) {
+      dispatch(setIsCartOpen(true));
+    } else {
+      dispatch(setIsCartOpen(false));
+    }
   };
 
   return (
-    <CartIconContainer onClick={cartOpen} cartOpen={isCartOpen}>
+    <CartIconContainer onClick={cartOpenToggle} cartOpen={isCartOpen}>
       <ShoppingIcon />
       {cartTotalQuantity > 0 && <ItemCount>{cartTotalQuantity}</ItemCount>}
     </CartIconContainer>

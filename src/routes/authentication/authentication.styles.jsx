@@ -15,5 +15,5 @@ export const AuthFormsContainer = styled.div`
   justify-content: space-between;
   width: 60%;
   margin: 30px auto;
-  z-index: ${(props) => (props.isSearchOpen ? "-1" : "")};
+  z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
 `;

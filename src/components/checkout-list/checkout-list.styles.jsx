@@ -10,9 +10,9 @@ export const CheckoutListContainer = styled.div`
 
 export const EmptyCart = styled.span`
   width: 100%;
-  margin: auto 0;
+  margin: 50px 0;
   text-align: center;
-  font-size: large;
+  font-size: 30px;
 `;
 
 export const CartTotalPriceContainer = styled.div`
@@ -28,32 +28,3 @@ export const CartTotalPrice = styled.span`
   font-weight: bold;
   margin-left: 15px;
 `;
-
-// .checkout-list-container {
-//   width: 70vw;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   .empty-cart {
-//     width: 100%;
-//     margin: auto 0;
-//     text-align: center;
-//     font-size: large;
-//   }
-// }
-
-// .cart-total-price-container {
-//   width: 100%;
-//   display: flex;
-//   justify-content: end;
-//   align-items: center;
-//   font-size: 25px;
-// }
-
-// .cart-total-price {
-//   font-size: 30px;
-//   font-weight: bold;
-//   margin-left: 15px;
-// }

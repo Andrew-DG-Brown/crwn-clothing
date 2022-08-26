@@ -45,6 +45,17 @@ const popCartItem = (cartItems, productToRemove) => {
   });
 };
 
+//change cart item quantity count
+const changeItemQuantity = (cartItems, product, quantity) => {
+  return cartItems.map((item) => {
+    if (item.name === product.name) {
+      return { ...item, quantity: quantity };
+    } else if (item.quantity === 0) {
+    }
+    return item;
+  });
+};
+
 // ===== Actions =====
 
 export const setIsCartOpen = (bool) => {
@@ -63,5 +74,10 @@ export const decrementCartQuantity = (cartItems, productToDecrement) => {
 
 export const removeCartItem = (cartItems, productToRemove) => {
   const newCartItems = popCartItem(cartItems, productToRemove);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+};
+
+export const changeCartItemQuantity = (cartItem, product, quantity) => {
+  const newCartItems = changeItemQuantity(cartItem, product, quantity);
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };

@@ -9,7 +9,7 @@ import {
   QuantityInCart,
   RemoveContainer,
 } from "./product-card.styles";
-import { RemoveButton } from "../cart-item/cart-item.styles";
+import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
 
 import { useState, Fragment } from "react";
 
@@ -71,7 +71,7 @@ const ProductCard = ({ product }) => {
             ) : (
               <RemoveContainer>
                 <span>Remove item from cart</span>
-                <RemoveButton onClick={removeItem}>&#10005;</RemoveButton>
+                <DeleteFromCart onClick={removeItem} />
               </RemoveContainer>
             )}
           </QuantityInCart>

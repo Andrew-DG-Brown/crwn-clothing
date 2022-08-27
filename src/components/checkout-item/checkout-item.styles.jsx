@@ -34,13 +34,3 @@ export const QuantityContainer = styled.div`
   width: 100px;
   text-align: center;
 `;
-
-export const DeleteButton = styled.button`
-  width: 45px;
-  height: 45px;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;

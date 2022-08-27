@@ -6,6 +6,7 @@ import {
   RemoveButton,
 } from "./cart-item.styles";
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
+import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +33,7 @@ const CartItem = ({ cartItem }) => {
           <span> ${price}</span>
         </div>
       </ItemDetails>
-      <RemoveButton onClick={removeItemHandler}>&#10005;</RemoveButton>
+      <DeleteFromCart onClick={removeItemHandler}>&#10005;</DeleteFromCart>
     </CartItemContainer>
   );
 };

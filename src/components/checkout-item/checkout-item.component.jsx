@@ -1,7 +1,6 @@
 import {
   CheckoutItemContainer,
   QuantityContainer,
-  DeleteButton,
 } from "./checkout-item.styles";
 
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
@@ -12,6 +11,7 @@ import { removeCartItem } from "../../store/cart/cart.actions";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectIsSearchOpen } from "../../store/search/search.selector";
+import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
 
 const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const CheckoutItem = ({ cartItem }) => {
         <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} />
       </QuantityContainer>
       <h2>${price}</h2>
-      <DeleteButton onClick={removeItemHandler}>&#10005;</DeleteButton>
+      <DeleteFromCart onClick={removeItemHandler}></DeleteFromCart>
     </CheckoutItemContainer>
   );
 };

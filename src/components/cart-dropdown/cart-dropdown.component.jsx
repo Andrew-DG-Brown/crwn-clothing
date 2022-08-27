@@ -46,7 +46,7 @@ const CartDropdown = () => {
         <Link to="/checkout">
           <Button onClick={closeCart}>Go to checkout</Button>
         </Link>
-        <h2>Total: ${cartTotalPrice}</h2>
+        <h2>Total: ${cartTotalPrice}.00</h2>
       </Footer>
     </CartDropdownContainer>
   );

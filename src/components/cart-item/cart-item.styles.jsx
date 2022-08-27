@@ -33,25 +33,3 @@ export const Name = styled.span`
   width: 70px;
   font-weight: bold;
 `;
-
-export const RemoveButton = styled.button`
-  margin: 0px;
-
-  width: 45px;
-  height: 45px;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 5px 7.5px 5.5px;
-  background-color: rgba(211, 211, 211, 0.4);
-  width: 30px;
-  height: 30px;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;

@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const cartTotalPrice = useSelector(selectCartTotal);
-  const cartTax = useSelector(selectCartTotalTax);
+  const cartTax = useSelector(selectCartTotalTax).toFixed(2);
   const deliveryCost = 30;
 
   return (
@@ -32,7 +32,7 @@ const Checkout = () => {
           </TextAndCostContainer>
           <TextAndCostContainer>
             <span>Delivery and Handling</span>
-            <span>${deliveryCost}.00</span>
+            <span>{cartTotalPrice > 0 ? `$${deliveryCost}.00` : "$0.00"}</span>
           </TextAndCostContainer>
           <TextAndCostContainer>
             <span>Taxes</span>
@@ -40,7 +40,11 @@ const Checkout = () => {
           </TextAndCostContainer>
           <TextAndCostContainer total bolded>
             <span>Total</span>
-            <span>${cartTotalPrice + cartTax + deliveryCost}</span>
+            <span>
+              {cartTotalPrice > 0
+                ? `$${cartTotalPrice + parseFloat(cartTax) + deliveryCost}`
+                : "$0.00"}
+            </span>
           </TextAndCostContainer>
         </SummaryTextContainer>
       </CheckoutSummary>

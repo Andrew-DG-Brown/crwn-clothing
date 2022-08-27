@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const CheckoutListContainer = styled.div`
-  width: 70vw;
-  margin: 0 auto;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,4 +26,9 @@ export const CartTotalPrice = styled.span`
   font-size: 30px;
   font-weight: bold;
   margin-left: 15px;
+`;
+
+export const Title = styled.h2`
+  text-align: left;
+  width: 100%;
 `;

@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
 const selectCartReducer = (state) => state.cart;
+const addTax = 0.13;
 
 export const selectCartItems = createSelector(
   [selectCartReducer],
@@ -29,3 +30,10 @@ export const selectCurrentCartItemQuantity = (product) =>
     });
     return item ? item.quantity : null;
   });
+
+export const selectCartTotalTax = createSelector(
+  [selectCartTotal],
+  (cartTotal) => {
+    return cartTotal * addTax;
+  }
+);

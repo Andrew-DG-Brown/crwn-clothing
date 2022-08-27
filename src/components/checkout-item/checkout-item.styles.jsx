@@ -5,7 +5,8 @@ export const CheckoutItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 0 0 20px 0;
+  margin-bottom: 20px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.543);
   z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
 

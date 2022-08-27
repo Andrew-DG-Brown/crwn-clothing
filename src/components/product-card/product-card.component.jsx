@@ -7,7 +7,9 @@ import {
   Name,
   Price,
   QuantityInCart,
+  RemoveContainer,
 } from "./product-card.styles";
+import { RemoveButton } from "../cart-item/cart-item.styles";
 
 import { useState, Fragment } from "react";
 
@@ -18,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart } from "../../store/cart/cart.actions";
 import { selectCurrentCartItemQuantity } from "../../store/cart/cart.selector";
+import { removeCartItem } from "../../store/cart/cart.actions";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -26,6 +29,7 @@ const ProductCard = ({ product }) => {
     selectCurrentCartItemQuantity(product)
   );
   const [addedToCart, setAddedToCart] = useState(false);
+  const [hoveringQuantity, setHoveringQuantity] = useState(false);
 
   const { name, price, imageUrl } = product;
 
@@ -37,13 +41,39 @@ const ProductCard = ({ product }) => {
     }, 2500);
   };
 
+  const removeItem = () => {
+    dispatch(removeCartItem(cartItems, product));
+    setHoveringQuantity(false);
+  };
+
+  const hovering = () => {
+    setHoveringQuantity(true);
+  };
+
+  const notHovering = () => {
+    setHoveringQuantity(false);
+  };
+
   return (
     <Fragment>
       {addedToCart && <AddToCartConfirm productName={name} />}
       <ProductCardContainer>
         {productQuantityInCart && (
-          <QuantityInCart>
-            <span>{productQuantityInCart}</span> in your cart
+          <QuantityInCart
+            onMouseEnter={hovering}
+            onMouseLeave={notHovering}
+            hovering={hoveringQuantity}
+          >
+            {!hoveringQuantity ? (
+              <Fragment>
+                <span>{productQuantityInCart}</span> <p>in your cart</p>
+              </Fragment>
+            ) : (
+              <RemoveContainer>
+                <span>Remove item from cart</span>
+                <RemoveButton onClick={removeItem}>&#10005;</RemoveButton>
+              </RemoveContainer>
+            )}
           </QuantityInCart>
         )}
         <Img src={imageUrl} alt={`${name}`} />

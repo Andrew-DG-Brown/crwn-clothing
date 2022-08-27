@@ -60,19 +60,20 @@ export const QuantityInCart = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  width: fit-content;
+  width: ${(props) => (props.hovering ? "fit-content" : "")};
   height: 40px;
   padding: 0px 0.8rem;
-  border-radius: 7px;
+  border-radius: 0 0 0 7px;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
-  top: -30px;
-  right: -10px;
+  top: -10px;
+  right: 0px;
   text-align: center;
-  background-color: #e11d48;
+  background-color: ${(props) => (props.hovering ? "black" : "#059669")};
   color: white;
   z-index: 1;
+  transition: width 1s;
   animation: pop-in 0.2s ease-in-out;
   span {
     font-weight: bold;
@@ -86,5 +87,14 @@ export const QuantityInCart = styled.div`
     to {
       scale: 100%;
     }
+  }
+`;
+
+export const RemoveContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    margin-right: 20px;
   }
 `;

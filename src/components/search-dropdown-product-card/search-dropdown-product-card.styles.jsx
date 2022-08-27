@@ -7,7 +7,6 @@ export const ProductCardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 350px;
-  /* align-items: center; */
   margin: 30px 0;
 `;
 
@@ -29,7 +28,7 @@ export const Img = styled.img`
 `;
 
 export const ProductButton = styled(Button)`
-  width: 250px;
+  width: 100%;
   animation: fade-in 0.1s ease-in-out;
 
   @keyframes fade-in {
@@ -42,12 +41,12 @@ export const ProductButton = styled(Button)`
   }
 `;
 
-export const TextContent = styled.div`
+export const ContentContainer = styled.div`
   display: flex;
   height: 50%;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   font-size: 18px;
   animation: fade-in 0.1s ease-in-out;
 
@@ -62,13 +61,18 @@ export const TextContent = styled.div`
 `;
 
 export const Name = styled.span`
-  width: 100%;
+  width: fit-content;
   margin-bottom: 3px;
   font-size: 20px;
   font-weight: bold;
 `;
 
 export const Price = styled.span`
-  width: 10%;
   margin-bottom: 15px;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;

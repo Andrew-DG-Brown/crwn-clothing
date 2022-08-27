@@ -5,9 +5,10 @@ import {
   ProductCardContainer,
   Img,
   ProductButton,
-  TextContent,
+  ContentContainer,
   Name,
   Price,
+  TextContainer,
 } from "./search-dropdown-product-card.styles";
 
 import AddToCartConfirm from "../add-to-cart-modal/add-to-cart-confirm";
@@ -37,16 +38,18 @@ export const SearchProductCard = ({ product }) => {
       {addedToCart && <AddToCartConfirm productName={name} />}
       <ProductCardContainer>
         <Img src={imageUrl} alt={`${name}`} />
-        <TextContent>
-          <Name>{name}</Name>
-          <Price>${price}</Price>
+        <ContentContainer>
+          <TextContainer>
+            <Name>{name}</Name>
+            <Price>${price}</Price>
+          </TextContainer>
           <ProductButton
             buttonType={BUTTON_TYPE_CLASSES.inverted}
             onClick={addProductToCart}
           >
             Add to Cart
           </ProductButton>
-        </TextContent>
+        </ContentContainer>
       </ProductCardContainer>
     </Fragment>
   );

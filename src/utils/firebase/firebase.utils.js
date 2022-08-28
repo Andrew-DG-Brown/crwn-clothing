@@ -38,6 +38,7 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 //Google signin popup
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
@@ -62,16 +63,16 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
-export const getCatagoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "catagories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const catagoryMap = querySnapshot.docs.map((docSnapshot) =>
+  const categoryMap = querySnapshot.docs.map((docSnapshot) =>
     docSnapshot.data()
   );
 
-  return catagoryMap;
+  return categoryMap;
 };
 
 //Passing in the user after sign in
@@ -84,10 +85,10 @@ export const createUserDocumentFromAuth = async (
   const userDocRef = doc(db, "users", userAuth.uid);
 
   //fetching the already signed up user doc
-  const userSnapshop = await getDoc(userDocRef);
+  const userSnapshot = await getDoc(userDocRef);
 
   //if user data doesnt exists, set it in the db
-  if (!userSnapshop.exists()) {
+  if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 

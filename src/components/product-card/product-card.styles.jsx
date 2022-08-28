@@ -5,16 +5,15 @@ export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 350px;
   align-items: center;
   position: relative;
+  overflow: hidden;
 
   &:hover {
     img {
       opacity: 0.8;
     }
     button {
-      opacity: 0.85;
       display: flex;
     }
   }
@@ -23,22 +22,21 @@ export const ProductCardContainer = styled.div`
 export const Img = styled.img`
   z-index: -1;
   width: 100%;
-  height: 95%;
+  height: 400px;
   object-fit: cover;
   margin-bottom: 5px;
 `;
 
 export const ProductButton = styled(Button)`
   width: 80%;
-  opacity: 0.7;
   position: absolute;
-  top: 255px;
+  top: 325px;
   display: none;
 `;
 
 export const Footer = styled.div`
   margin-top: 5px;
-  width: 100%;
+  width: 95%;
   height: 5%;
   display: flex;
   justify-content: space-between;
@@ -74,18 +72,18 @@ export const QuantityInCart = styled.div`
   color: white;
   z-index: 1;
   transition: width 1s;
-  animation: pop-in 0.2s ease-in-out;
+  animation: slide-right 0.2s ease-in-out;
   span {
     font-weight: bold;
     margin-right: 5px;
   }
 
-  @keyframes pop-in {
+  @keyframes slide-right {
     from {
-      scale: 0%;
+      transform: translateX(130px);
     }
     to {
-      scale: 100%;
+      transform: translateX(0px);
     }
   }
 `;

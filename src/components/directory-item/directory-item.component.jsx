@@ -1,8 +1,8 @@
 import React from "react";
 import {
   DirectoryItemContainer,
-  Body,
   BackgroundImage,
+  TextContainer,
 } from "./directory-item.styles";
 
 import { useNavigate } from "react-router-dom";
@@ -64,10 +64,10 @@ const DirectoryItems = () => {
         isCartOpen={isCartOpen}
       >
         <BackgroundImage imageUrl={imageUrl}>
-          <Body>
+          <TextContainer>
             <h2>{title}</h2>
             <p>Shop Now</p>
-          </Body>
+          </TextContainer>
         </BackgroundImage>
       </DirectoryItemContainer>
     );

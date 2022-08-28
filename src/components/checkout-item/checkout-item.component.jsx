@@ -1,6 +1,7 @@
 import {
   CheckoutItemContainer,
-  QuantityContainer,
+  LeftTextContainer,
+  Price,
 } from "./checkout-item.styles";
 
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
@@ -28,12 +29,17 @@ const CheckoutItem = ({ cartItem }) => {
   return (
     <CheckoutItemContainer isSearchOpen={isSearchOpen} isCartOpen={isCartOpen}>
       <img src={`${imageUrl}`} alt={name} />
-      <h2>{name}</h2>
-      <QuantityContainer>
-        <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} />
-      </QuantityContainer>
-      <h2>${price}</h2>
-      <DeleteFromCart onClick={removeItemHandler}></DeleteFromCart>
+      <LeftTextContainer>
+        <h2>{name}</h2>
+        <div>
+          <span>Quantity</span>
+          <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} />
+        </div>
+
+        <DeleteFromCart onClick={removeItemHandler}></DeleteFromCart>
+      </LeftTextContainer>
+
+      <Price>${price} each</Price>
     </CheckoutItemContainer>
   );
 };

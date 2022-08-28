@@ -15,8 +15,11 @@ export const CheckoutItemContainer = styled.div`
     z-index: -1;
   }
 
-  h2 {
-    width: 80px;
+  div {
+    display: flex;
+    span {
+      margin-right: 10px;
+    }
   }
 
   button {
@@ -27,10 +30,21 @@ export const CheckoutItemContainer = styled.div`
   }
 `;
 
-export const QuantityContainer = styled.div`
+export const LeftTextContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+
+  h2 {
+    margin: 0px;
+  }
+`;
+
+export const Price = styled.span`
+  text-align: start;
+  height: 90%;
   width: 100px;
-  text-align: center;
 `;

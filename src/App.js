@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
-  getCatagoriesAndDocuments,
+  getCategoriesAndDocuments,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./store/user/user.action.js";
 import { setCategories } from "./store/categories/categories.action.js";
@@ -46,7 +46,7 @@ const App = () => {
 
   useEffect(() => {
     const getCategoriesMap = async () => {
-      const categoriesArray = await getCatagoriesAndDocuments();
+      const categoriesArray = await getCategoriesAndDocuments();
       dispatch(setCategories(categoriesArray));
     };
     getCategoriesMap();

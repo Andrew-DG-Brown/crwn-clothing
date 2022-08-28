@@ -1,42 +1,5 @@
 import styled from "styled-components";
 
-export const BackgroundImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Body = styled.div`
-  height: 90px;
-  width: 170px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  background-color: white;
-  opacity: 0.7;
-  position: absolute;
-
-  h2 {
-    font-weight: bold;
-    margin: 6px 6px 0 6px;
-    font-size: 22px;
-    color: #4a4a4a;
-  }
-
-  p {
-    font-weight: lighter;
-    font-size: 16px;
-  }
-`;
-
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
   height: 240px;
@@ -44,22 +7,13 @@ export const DirectoryItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border-radius: 20px;
   margin: 0 7.5px 15px;
   overflow: hidden;
   z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
 
   &:hover {
     cursor: pointer;
-
-    & ${BackgroundImage} {
-      transform: scale(1.1);
-      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
-    }
-
-    & ${Body} {
-      opacity: 0.9;
-    }
 
     &:first-child {
       margin-right: 7.5px;
@@ -69,4 +23,44 @@ export const DirectoryItemContainer = styled.div`
       margin-left: 7.5px;
     }
   }
+`;
+
+export const BackgroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
+    ${({ imageUrl }) => `url(${imageUrl})`};
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+
+  h2 {
+    font-weight: bold;
+    font-size: 37px;
+    margin: 0px 0px 0px 0px;
+    color: white;
+  }
+
+  p {
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    margin: 0px;
+  }
+
+  &:hover {
+    p {
+      transition: all 0.25s ease-in-out;
+      opacity: 1;
+    }
+  }
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0 20px 40px;
 `;

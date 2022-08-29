@@ -1,16 +1,15 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
-  getCategoriesAndDocuments,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./store/user/user.action.js";
-import { setCategories } from "./store/categories/categories.action.js";
-import { setIsCartOpen } from "./store/cart/cart.actions.js";
-import { setIsSearchOpen } from "./store/search/search.actions.js";
+import { fetchCategoriesAsync } from "./store/categories/categories.action.js";
+
+import { useCloseDropdowns } from "./utils/hooks/useCloseDropdowns.js";
 
 import Home from "./routes/home/home.component.jsx";
 import Nav from "./routes/navigation/nav.component.jsx";
@@ -22,13 +21,10 @@ const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const currentPath = useRef(location.pathname);
+  const currentPath = location.pathname;
 
   //closes all dropdowns when route changes
-  useEffect(() => {
-    dispatch(setIsCartOpen(false));
-    dispatch(setIsSearchOpen(false));
-  }, [currentPath]);
+  useCloseDropdowns(currentPath);
 
   //setting user state in store
   useEffect(() => {
@@ -45,11 +41,7 @@ const App = () => {
   //setting state of categoriesMap in store
 
   useEffect(() => {
-    const getCategoriesMap = async () => {
-      const categoriesArray = await getCategoriesAndDocuments();
-      dispatch(setCategories(categoriesArray));
-    };
-    getCategoriesMap();
+    dispatch(fetchCategoriesAsync());
   }, []);
 
   return (

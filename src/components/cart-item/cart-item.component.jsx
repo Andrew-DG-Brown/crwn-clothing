@@ -1,10 +1,4 @@
-import {
-  CartItemContainer,
-  ItemDetails,
-  Name,
-  Img,
-  RemoveButton,
-} from "./cart-item.styles";
+import { CartItemContainer, ItemDetails, Name, Img } from "./cart-item.styles";
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
 import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
 

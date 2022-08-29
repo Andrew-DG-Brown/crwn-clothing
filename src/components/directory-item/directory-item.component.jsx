@@ -66,7 +66,7 @@ const DirectoryItems = () => {
         <BackgroundImage imageUrl={imageUrl}>
           <TextContainer>
             <h2>{title}</h2>
-            <p>Shop Now</p>
+            <p>Shop Now &#x279C;</p>
           </TextContainer>
         </BackgroundImage>
       </DirectoryItemContainer>

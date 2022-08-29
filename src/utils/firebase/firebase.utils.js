@@ -46,7 +46,7 @@ export const signInWithGooglePopup = () =>
 //accessing the firestore database
 export const db = getFirestore();
 
-//function to add the shop data to firestore
+//(already added the collection) function to add the shop data to firestore
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd

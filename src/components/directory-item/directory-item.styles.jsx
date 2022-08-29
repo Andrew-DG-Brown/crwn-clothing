@@ -7,7 +7,6 @@ export const DirectoryItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
   margin: 0 7.5px 15px;
   overflow: hidden;
   z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
@@ -25,7 +24,15 @@ export const DirectoryItemContainer = styled.div`
   }
 `;
 
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0 20px 40px;
+`;
+
 export const BackgroundImage = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
@@ -35,32 +42,33 @@ export const BackgroundImage = styled.div`
   display: flex;
   align-items: flex-end;
 
-  h2 {
-    font-weight: bold;
-    font-size: 37px;
-    margin: 0px 0px 0px 0px;
-    color: white;
-  }
-
   p {
+    transition: all 0.25s ease-in-out;
     font-weight: lighter;
     font-size: 16px;
     color: white;
     opacity: 0;
     margin: 0px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 37px;
+    margin: 0px 0px 10px 0px;
+    color: white;
+    transition: all 0.25s ease-in-out;
   }
 
   &:hover {
+    h2 {
+      transform: translateY(-20px);
+    }
+
     p {
-      transition: all 0.25s ease-in-out;
       opacity: 1;
+      transform: translateY(-20px);
     }
   }
-`;
-
-export const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 0 20px 40px;
 `;

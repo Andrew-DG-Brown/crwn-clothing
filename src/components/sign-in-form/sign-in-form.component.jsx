@@ -1,11 +1,17 @@
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import {
+  SignInFormContainer,
+  Header,
+  ButtonsContainer,
+} from "./sign-in-form.styles.jsx";
+
 import { useState } from "react";
 import {
   signInWithAuthEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
-import "./sign-in-form.styles.scss";
+import "./sign-in-form.styles.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -14,16 +20,31 @@ const defaultFormFields = {
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [wrongUser, setWrongUser] = useState(false);
+  const [wrongPass, setWrongPass] = useState(false);
+
   const { email, password } = formFields;
 
   const handleChange = (event) => {
+    if (wrongUser) setWrongUser(false);
+    if (wrongPass) setWrongPass(false);
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+  const handleWrongUser = () => {
+    setWrongUser(true);
   };
+
+  const handleWrongPass = () => {
+    setWrongPass(true);
+  };
+
+  //TODO: fix google sign in
+
+  // const signInWithGoogle = async () => {
+  //   await signInWithGooglePopup();
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,10 +59,10 @@ const SignInForm = () => {
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
-          alert("Incorrect password");
+          handleWrongPass();
           break;
         case "auth/user-not-found":
-          alert("User not found");
+          handleWrongUser();
           break;
         default:
           alert(error);
@@ -50,12 +71,13 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-form-container">
-      <h2>I already have an account</h2>
+    <SignInFormContainer>
+      <Header>I already have an account</Header>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label="Email"
+          wrongUser={wrongUser}
+          label={wrongUser ? "Email does not exist" : "Email"}
           required
           type="email"
           onChange={handleChange}
@@ -63,24 +85,25 @@ const SignInForm = () => {
           value={email}
         />
         <FormInput
-          label="Password"
+          wrongPass={wrongPass}
+          label={wrongPass ? "Wrong Password" : "Password"}
           required
           type="password"
           onChange={handleChange}
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button children="Sign In" type="submit"></Button>
-          <Button
+          {/*<Button
             type="button"
             buttonType={BUTTON_TYPE_CLASSES.google}
             children="Sign In With Google"
             onClick={signInWithGoogle}
-          ></Button>
-        </div>
+          ></Button>*/}
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInFormContainer>
   );
 };
 

@@ -10,7 +10,7 @@ export const NavigationContainer = styled.div`
   margin-bottom: 25px;
   box-shadow: ${(props) =>
     props.isSearchOpen || props.isCartOpen
-      ? "0 0 200px 5000px rgba(0, 0, 0, 0.5)"
+      ? "0 0 200px rgba(0, 0, 0, 0.5)"
       : ""};
   border-radius: ${(props) => (props.isCartOpen ? "20px 20px 0 20px" : "20px")};
   transition: box-shadow 0.05s;

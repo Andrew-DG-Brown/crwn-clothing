@@ -4,7 +4,7 @@ import { ReactComponent as SearchLogo } from "../../assets/search-outline.svg";
 export const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
-  width: ${(props) => (props.clicked ? "85%" : "200px")};
+  width: ${(props) => (props.clicked ? "77%" : "200px")};
   height: 40px;
   background-color: #f4f4f5;
   border-radius: 50px;

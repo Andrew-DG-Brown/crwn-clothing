@@ -17,6 +17,7 @@ import {
   writeBatch,
   query,
   getDocs,
+  addDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -39,12 +40,12 @@ googleProvider.setCustomParameters({
 
 export const auth = getAuth();
 
+//accessing the firestore database
+export const db = getFirestore();
+
 //Google signin popup
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
-
-//accessing the firestore database
-export const db = getFirestore();
 
 //(already added the collection) function to add the shop data to firestore
 export const addCollectionAndDocuments = async (
@@ -54,13 +55,20 @@ export const addCollectionAndDocuments = async (
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
-  //iterating over the SHOP_DATA object for each catagory
+  //iterating over the SHOP_DATA object for each category
   objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
 
   await batch.commit();
+};
+
+//test setting wishlist item
+export const addToWishlist = async (currentUserUid, productToAdd) => {
+  await addDoc(collection(db, "users", currentUserUid), {
+    wishList: [productToAdd],
+  });
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -75,6 +83,20 @@ export const getCategoriesAndDocuments = async () => {
   return categoryMap;
 };
 
+export const getTestData = (collectionName) => {
+  const collectionRef = collection(db, collectionName);
+
+  let ret = [];
+
+  getDocs(collectionRef).then((res) => {
+    const response = res.docs.map((doc) => doc.data());
+
+    ret = response;
+  });
+
+  return ret;
+};
+
 //Passing in the user after sign in
 //storing user data inside firestore db
 export const createUserDocumentFromAuth = async (
@@ -87,7 +109,7 @@ export const createUserDocumentFromAuth = async (
   //fetching the already signed up user doc
   const userSnapshot = await getDoc(userDocRef);
 
-  //if user data doesnt exists, set it in the db
+  //if user data doesn't exists, set it in the db
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();

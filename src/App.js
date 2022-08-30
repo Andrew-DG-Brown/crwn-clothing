@@ -23,7 +23,7 @@ const App = () => {
 
   const currentPath = location.pathname;
 
-  //closes all dropdowns when route changes
+  //closes the dropdown that's open when route changes
   useCloseDropdowns(currentPath);
 
   //setting user state in store

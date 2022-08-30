@@ -22,7 +22,7 @@ const CheckoutItem = ({ cartItem }) => {
   const cartItems = useSelector(selectCartItems);
   const isSearchOpen = useSelector(selectIsSearchOpen);
   const isCartOpen = useSelector(selectIsCartOpen);
-  const currentUser = useSelector(selectCurrentUser).uid;
+  const currentUser = useSelector(selectCurrentUser);
 
   const { name, imageUrl, price } = cartItem;
 

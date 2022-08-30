@@ -16,7 +16,16 @@ export const ModalHeader = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  background-color: #059669;
+  background-color: ${({ type }) => {
+    switch (type) {
+      case "user-sign-out":
+        return "black";
+      case "added-to-cart":
+        return "#059669";
+      default:
+        return "#e11d48";
+    }
+  }};
   color: white;
   z-index: 1;
   animation: slide-in 2.5s ease-in-out;

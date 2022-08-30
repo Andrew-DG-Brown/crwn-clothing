@@ -13,7 +13,7 @@ import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-butt
 
 import { useState, Fragment } from "react";
 
-import AddToCartConfirm from "../add-to-cart-modal/add-to-cart-confirm";
+import { DropdownModal } from "../dropdown-modal/dropdown-modal";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -56,7 +56,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Fragment>
-      {addedToCart && <AddToCartConfirm productName={name} />}
+      {addedToCart && <DropdownModal type="added-to-cart" productName={name} />}
       <ProductCardContainer>
         {productQuantityInCart && (
           <QuantityInCart

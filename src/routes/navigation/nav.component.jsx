@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { useClickOutside } from "../../utils/hooks/useClickOutside";
@@ -17,6 +17,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { SearchBar } from "../../components/search-bar/search-bar.component";
+import { DropdownModal } from "../../components/dropdown-modal/dropdown-modal";
 
 import {
   NavigationContainer,
@@ -31,14 +32,37 @@ const Nav = () => {
   const isCartOpen = useSelector(selectIsCartOpen);
   const isSearchOpen = useSelector(selectIsSearchOpen);
 
+  const [signedOutClicked, setSignOutClicked] = useState(false);
+  const [justSignedIn, setJustSignedIn] = useState(false);
+
   const cartContainerNodeRef = useClickOutside(() => closeCart());
+
+  //fires modal only when user signs in
+  useEffect(() => {
+    if (currentUser) {
+      setJustSignedIn(true);
+      setTimeout(() => {
+        setJustSignedIn(false);
+      }, 2400);
+    }
+  }, [currentUser]);
 
   const closeCart = () => {
     dispatch(setIsCartOpen(false));
   };
 
+  const handleSignOut = () => {
+    signOutUser();
+    setSignOutClicked(true);
+    setTimeout(() => {
+      setSignOutClicked(false);
+    }, 2400);
+  };
+
   return (
     <Fragment>
+      {signedOutClicked && <DropdownModal type="user-sign-out" />}
+      {justSignedIn && <DropdownModal type="user-sign-in" />}
       <NavigationContainer isSearchOpen={isSearchOpen} isCartOpen={isCartOpen}>
         <LogoContainer to="/">
           <CrwnLogo id="logo" />
@@ -48,7 +72,7 @@ const Nav = () => {
           <SearchBar />
           <NavLink to="/shop">Shop</NavLink>
           {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
+            <NavLink as="span" onClick={handleSignOut}>
               Sign Out
             </NavLink>
           ) : (

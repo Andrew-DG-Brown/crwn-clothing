@@ -11,7 +11,7 @@ import {
   TextContainer,
 } from "./search-dropdown-product-card.styles";
 
-import AddToCartConfirm from "../add-to-cart-modal/add-to-cart-confirm";
+import { DropdownModal } from "../dropdown-modal/dropdown-modal";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -35,7 +35,7 @@ export const SearchProductCard = ({ product }) => {
 
   return (
     <Fragment>
-      {addedToCart && <AddToCartConfirm productName={name} />}
+      {addedToCart && <DropdownModal type="added-to-cart" productName={name} />}
       <ProductCardContainer>
         <Img src={imageUrl} alt={`${name}`} />
         <ContentContainer>

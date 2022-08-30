@@ -1,3 +1,4 @@
+import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
@@ -6,12 +7,12 @@ import {
   ButtonsContainer,
 } from "./sign-in-form.styles.jsx";
 
-import { useState } from "react";
 import {
   signInWithAuthEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
-import "./sign-in-form.styles.jsx";
+
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
@@ -19,6 +20,8 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [wrongUser, setWrongUser] = useState(false);
   const [wrongPass, setWrongPass] = useState(false);
@@ -56,6 +59,7 @@ const SignInForm = () => {
 
     try {
       const { user } = await signInWithAuthEmailAndPassword(email, password);
+      navigate("/");
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -65,7 +69,7 @@ const SignInForm = () => {
           handleWrongUser();
           break;
         default:
-          alert(error);
+          alert(error.code);
       }
     }
   };

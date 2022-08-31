@@ -20,10 +20,10 @@ export const ModalHeader = styled.div`
     switch (type) {
       case "user-sign-out":
         return "black";
-      case "added-to-cart":
-        return "#059669";
-      default:
+      case "removed-from-cart":
         return "#e11d48";
+      default:
+        return "#059669";
     }
   }};
   color: white;

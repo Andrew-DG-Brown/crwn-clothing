@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CheckoutItemContainer,
   LeftTextContainer,
@@ -5,8 +6,7 @@ import {
 } from "./checkout-item.styles";
 
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
-
-import { addToWishlist } from "../../utils/firebase/firebase.utils";
+import { LoadingSpinner } from "../loading-spinner/loading-spinner.component";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ import { removeCartItem } from "../../store/cart/cart.actions";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectIsSearchOpen } from "../../store/search/search.selector";
-import { selectCurrentUser } from "../../store/user/user.selector";
+
 import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
 
 const CheckoutItem = ({ cartItem }) => {
@@ -22,22 +22,25 @@ const CheckoutItem = ({ cartItem }) => {
   const cartItems = useSelector(selectCartItems);
   const isSearchOpen = useSelector(selectIsSearchOpen);
   const isCartOpen = useSelector(selectIsCartOpen);
-  const currentUser = useSelector(selectCurrentUser);
+
+  const [justRemoved, setJustRemoved] = useState(false);
 
   const { name, imageUrl, price } = cartItem;
 
   const removeItemHandler = () => {
-    dispatch(removeCartItem(cartItems, cartItem));
+    setJustRemoved(true);
+    setTimeout(() => {
+      dispatch(removeCartItem(cartItems, cartItem));
+      setJustRemoved(false);
+    }, 900);
   };
 
-  // const addToWishlistHandler = () => {
-  //   return currentUser
-  //     ? addToWishlist(currentUserUid, cartItem)
-  //     : "make popup modal";
-  // };
-
   return (
-    <CheckoutItemContainer isSearchOpen={isSearchOpen} isCartOpen={isCartOpen}>
+    <CheckoutItemContainer
+      isSearchOpen={isSearchOpen}
+      isCartOpen={isCartOpen}
+      justRemoved={justRemoved}
+    >
       <img src={`${imageUrl}`} alt={name} />
       <LeftTextContainer>
         <h2>{name}</h2>
@@ -46,8 +49,11 @@ const CheckoutItem = ({ cartItem }) => {
           <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} />
         </div>
 
-        <DeleteFromCart onClick={removeItemHandler}></DeleteFromCart>
-        {/*<button>Add to wishlist</button>*/}
+        {justRemoved ? (
+          <LoadingSpinner />
+        ) : (
+          <DeleteFromCart onClick={removeItemHandler}></DeleteFromCart>
+        )}
       </LeftTextContainer>
 
       <Price>${price} each</Price>

@@ -9,6 +9,7 @@ export const CheckoutItemContainer = styled.div`
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.543);
   z-index: ${(props) => (props.isSearchOpen || props.isCartOpen ? "-1" : "")};
+  opacity: ${({ justRemoved }) => (justRemoved ? "0.4" : "1")};
 
   img {
     width: 100px;

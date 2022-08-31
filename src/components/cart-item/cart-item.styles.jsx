@@ -6,6 +6,7 @@ export const CartItemContainer = styled.div`
   align-items: center;
   height: 80px;
   margin-bottom: 30px;
+  opacity: ${({ justRemoved }) => (justRemoved ? "0.4" : "1")};
 `;
 
 export const Img = styled.div`

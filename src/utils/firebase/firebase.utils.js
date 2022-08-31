@@ -18,6 +18,7 @@ import {
   query,
   getDocs,
   addDoc,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -83,18 +84,14 @@ export const getCategoriesAndDocuments = async () => {
   return categoryMap;
 };
 
-export const getTestData = (collectionName) => {
-  const collectionRef = collection(db, collectionName);
+export const getTestData = async () => {
+  const q = query(
+    collection(db, "users"),
+    where("email", "==", "andrewbrown1337@hotmail.com")
+  );
 
-  let ret = [];
-
-  getDocs(collectionRef).then((res) => {
-    const response = res.docs.map((doc) => doc.data());
-
-    ret = response;
-  });
-
-  return ret;
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => console.log(doc.id));
 };
 
 //Passing in the user after sign in

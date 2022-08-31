@@ -9,7 +9,7 @@ export const DropdownModal = ({ type, productName }) => {
         </p>
       )}
       {type === "user-sign-out" && <p>You are now signed-out</p>}
-      {type === "user-sign-in" && <p>You are now signed-in</p>}
+      {type === "user-sign-in" && <p>Signed-in successfully</p>}
     </ModalHeader>
   );
 };

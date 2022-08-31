@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 import { CartItemContainer, ItemDetails, Name, Img } from "./cart-item.styles";
 import { QuantitySelectDropdown } from "../quantity-select-dropdown/quantity-select-dropdown.component";
 import { DeleteFromCart } from "../delete-from-cart-button/delete-from-cart-button.styles";
+import { LoadingSpinner } from "../loading-spinner/loading-spinner.component";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -11,14 +14,20 @@ const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
+  const [justRemoved, setJustRemoved] = useState(false);
+
   const { name, imageUrl, price } = cartItem;
 
   const removeItemHandler = () => {
-    dispatch(removeCartItem(cartItems, cartItem));
+    setJustRemoved(true);
+    setTimeout(() => {
+      dispatch(removeCartItem(cartItems, cartItem));
+      setJustRemoved(false);
+    }, 900);
   };
 
   return (
-    <CartItemContainer>
+    <CartItemContainer justRemoved={justRemoved}>
       <Img imageUrl={imageUrl} alt={name} />
       <ItemDetails>
         <Name>{name}</Name>
@@ -27,7 +36,11 @@ const CartItem = ({ cartItem }) => {
           <span> ${price}</span>
         </div>
       </ItemDetails>
-      <DeleteFromCart onClick={removeItemHandler}>&#10005;</DeleteFromCart>
+      {justRemoved ? (
+        <LoadingSpinner />
+      ) : (
+        <DeleteFromCart onClick={removeItemHandler}>&#10005;</DeleteFromCart>
+      )}
     </CartItemContainer>
   );
 };

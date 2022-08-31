@@ -41,7 +41,7 @@ export const SearchProductCard = ({ product }) => {
         <ContentContainer>
           <TextContainer>
             <Name>{name}</Name>
-            <Price>${price}</Price>
+            <Price>${price.toFixed(2)}</Price>
           </TextContainer>
           <ProductButton
             buttonType={BUTTON_TYPE_CLASSES.inverted}

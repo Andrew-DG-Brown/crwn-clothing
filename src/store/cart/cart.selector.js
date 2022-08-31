@@ -18,10 +18,16 @@ export const selectCartCount = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce((accum, cartItem) => accum + cartItem.quantity, 0)
 );
 
-export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
-  cartItems.reduce((accum, cartItem) => {
-    return accum + cartItem.price * cartItem.quantity;
-  }, 0)
+export const selectCartTotal = createSelector(
+  [selectCartItems],
+  (cartItems) => {
+    const total = cartItems
+      .reduce((accum, cartItem) => {
+        return accum + cartItem.price * cartItem.quantity;
+      }, 0)
+      .toFixed(2);
+    return parseFloat(total);
+  }
 );
 
 export const selectCurrentCartItemQuantity = (product) =>
@@ -35,6 +41,7 @@ export const selectCurrentCartItemQuantity = (product) =>
 export const selectCartTotalTax = createSelector(
   [selectCartTotal],
   (cartTotal) => {
-    return cartTotal * addTax;
+    const total = cartTotal * addTax;
+    return Number(total.toFixed(2));
   }
 );

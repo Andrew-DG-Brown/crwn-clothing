@@ -31,6 +31,8 @@ const CartDropdown = () => {
     dispatch(setIsCartOpen(!isCartOpen));
   };
 
+  console.log(cartTotalPrice);
+
   const cartIsEmpty = !cartItems[0];
 
   return (
@@ -46,7 +48,7 @@ const CartDropdown = () => {
         <Link to="/checkout">
           <Button onClick={closeCart}>Go to checkout</Button>
         </Link>
-        <h2>Total: ${cartTotalPrice}.00</h2>
+        <h2>Total: ${cartTotalPrice}</h2>
       </Footer>
     </CartDropdownContainer>
   );

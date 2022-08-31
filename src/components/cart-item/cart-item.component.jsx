@@ -33,7 +33,7 @@ const CartItem = ({ cartItem }) => {
         <Name>{name}</Name>
         <div>
           <QuantitySelectDropdown cartItem={cartItem} cartItems={cartItems} /> x
-          <span> ${price}</span>
+          <span> ${price.toFixed(2)}</span>
         </div>
       </ItemDetails>
       {justRemoved ? (
